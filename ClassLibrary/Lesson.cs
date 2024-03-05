@@ -9,25 +9,25 @@ using System.Threading.Tasks;
  */
 namespace ClassLibrary
 {
-    public class Lesson
+    internal class Lesson
     {
         private string date;
-        private string refDiscipline;
-        private string refEmployee;
-        private string refClassroom;
-        private string refGroup;
-        private string refPair;
-        private string refTypeOfActivity; /// 14 варианта у нас нет
+        private Discipline discipline;
+        private Employee employee;
+        private Classroom classroom;
+        private Group group;
+        private Pair pair;
+        private Body body; /// 14 варианта у нас нет, поэтому ссылаюсь на 13
 
-        public Lesson(string date, string refDiscipline, string refEmployee, string refClassroom, string refGroup, string refPair, string refTypeOfActivity)
+        public Lesson(string date, Discipline discipline, Employee employee, Classroom classroom, Group group, Pair pair, Body body)
         {
             this.date = DateTime.Today.ToString();
-            this.refDiscipline = refDiscipline;
-            this.refEmployee = refEmployee;
-            this.refClassroom = refClassroom;
-            this.refGroup = refGroup;
-            this.refPair = refPair;
-            this.refTypeOfActivity = refTypeOfActivity;
+            this.discipline = discipline;
+            this.employee = employee;
+            this.classroom = classroom;
+            this.group = group;
+            this.pair = pair;
+            this.body = body;
         }
     }
 }
