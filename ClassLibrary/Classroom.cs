@@ -9,7 +9,7 @@ namespace ClassLibrary
     /// <summary>
     /// https://docs.google.com/document/d/10XwtkjNB6-lRehWP_7qbgWC1nn_oIpa28ezyPXX3B28/edit
     /// </summary>
-    class Classroom
+    internal class Classroom
     {
         private string name;
         private Employee employee;
