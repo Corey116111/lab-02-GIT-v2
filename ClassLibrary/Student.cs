@@ -6,12 +6,11 @@ using System.Threading.Tasks;
 
 namespace ClassLibrary
 {
-    class Student
+    internal class Student
     {
         private string surname;
         private string name;
         private string patronymic;
-        private string TheCommandant;
         private Group group;
         private string birth;
         public Student(string surname, string name, string patronymic, Group group, string birth)
