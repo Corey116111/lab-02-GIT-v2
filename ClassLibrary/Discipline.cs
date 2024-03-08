@@ -6,7 +6,13 @@ using System.Threading.Tasks;
 
 namespace ClassLibrary
 {
-    class Discipline
+    internal class Discipline
     {
+        private string name;
+        private string shortName;
+        public Discipline(string name, string shortName)
+        {
+            this.name = name; this.shortName = shortName;
+        }
     }
 }
