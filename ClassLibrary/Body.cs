@@ -5,8 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace ClassLibrary
-{
-    internal class Body
+{   /// <summary>
+    /// https://docs.google.com/document/d/13_TXjBoKn0TzKMcWP9A6jX2vyQEgcxBc4vY1CfJn9ps/edit?pli=1 13 вариант
+    /// </summary>
+    public class Body
     {
         private string name;
         private string address;

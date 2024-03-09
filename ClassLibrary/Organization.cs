@@ -6,13 +6,16 @@ using System.Threading.Tasks;
 
 namespace ClassLibrary
 {
-    internal class Organisation
+    /// <summary>
+    /// https://docs.google.com/document/d/1JN0SjEeelhtpKzoJqkva5JRePiMCLzyYPcI0Je8m7qU/edit 12 вариант
+    /// </summary>
+    public class Organization
     {
         private string name;
         private string legalAdress;
         private string actualAdress;
         private Employee employee;
-        public Organisation(string name, string legalAdress, string actualAdress, string refSupervisor)
+        public Organization(string name, string legalAdress, string actualAdress, string refSupervisor, Employee employee)
         {
             this.name = name;
             this.legalAdress = legalAdress;

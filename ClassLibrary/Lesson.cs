@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace ClassLibrary
 {
-    internal class Lesson
+    /// <summary>
+    /// https://docs.google.com/document/d/1KZXfKJussGflgWnWylGbFrwmdcn3liYKIsgmtxB1mN0/edit 1 вариант
+    /// </summary>
+    public class Lesson
     {
         private string date;
         private Discipline discipline;

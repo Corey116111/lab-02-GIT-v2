@@ -7,7 +7,10 @@ using System.Threading.Tasks;
 
 namespace ClassLibrary
 {
-    internal class Pair
+    /// <summary>
+    /// https://docs.google.com/document/d/1r4OjKXg5_5yj6ibHB778UEF5Z1nbUqGdXjpQXbTGWiQ/edit 7 вариант
+    /// </summary>
+    public class Pair
     {
         private string time_pair_start;
         private string time_pair_end;

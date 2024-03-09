@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace ClassLibrary
 {
-    internal class Speciality
+    /// <summary>
+    /// https://docs.google.com/document/d/1pDw7bbBJDmeqT8VVwp68BSOF_4yd9cNb9xpH_q2KW0E/edit 6 вариант
+    /// </summary>
+    public class Speciality
     {
         private string name;
         private string abbreviation;
