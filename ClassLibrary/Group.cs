@@ -34,5 +34,10 @@ namespace ClassLibrary
                 this.year = year;
             }
         }
+
+        public string Name
+        {
+            get { return name; }
+        }
     }
 }

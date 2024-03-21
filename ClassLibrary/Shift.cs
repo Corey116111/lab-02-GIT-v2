@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace ClassLibrary
 {
@@ -18,6 +19,16 @@ namespace ClassLibrary
         {
             this.name = name;
             this.date = DateTime.Today.ToString();
+        }
+
+        public string Name
+        {
+            get { return name; }
+        }
+
+        public string Date
+        {
+            get { return date; }
         }
     }
 }

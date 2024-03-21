@@ -24,5 +24,21 @@ namespace ClassLibrary
             this.count_windows = count_windows;
             //this.equipment = equipment;
         }
+
+        public string Number
+        {
+            get { return name; }
+        }
+
+        
+        public int Places
+        {
+            get { return count_places; }
+        }
+
+        public int Windows
+        {
+            get { return count_windows; }
+        }
     }
 }

@@ -23,5 +23,17 @@ namespace ClassLibrary
             this.student = student;
             this.organization = organization;
         }
+
+        public string Letter
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(name))
+                {
+                    return string.Empty; /// назвния корпуса нач с буквы
+                }
+                return name[0].ToString().ToUpper();
+            }
+        }
     }
 }

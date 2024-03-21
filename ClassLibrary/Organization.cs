@@ -20,8 +20,13 @@ namespace ClassLibrary
             this.name = name;
             this.legalAdress = legalAdress;
             this.actualAdress = actualAdress;
-            this.employee = employee; 
+            this.employee = employee;
 
+        }
+
+        public string Name
+        {
+            get { return name; }
         }
     }
 

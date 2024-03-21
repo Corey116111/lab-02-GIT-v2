@@ -26,5 +26,57 @@ namespace ClassLibrary
             this.time_break_end = time_break_end;
             this.shift = shift;
         }
+
+        public int Number
+        {
+            get
+            {
+                TimeSpan time = TimeSpan.Parse(time_pair_start);
+                int hour = time.Hours;
+                int minute = time.Minutes;
+
+                if (hour < 8 || hour >= 20)
+                {
+                    return -1; // Недопустимое время
+                }
+
+                if (hour == 8 && minute >= 30)
+                {
+                    return 1; /// возвращает номер пары на основе времени 
+                }
+
+                if (hour == 10 || (hour == 9 && minute >= 40))
+                {
+                    return 2;
+                }
+
+                if (hour == 11 || (hour == 10 && minute >= 50))
+                {
+                    return 3;
+                }
+
+                if (hour == 13 && minute >= 20)
+                {
+                    return 4;
+                }
+
+                if (hour == 15 || (hour == 14 && minute >= 20))
+                {
+                    return 5;
+                }
+
+                if (hour == 16 || (hour == 15 && minute >= 30))
+                {
+                    return 6;
+                }
+
+                if (hour == 17 || (hour == 16 && minute >= 40))
+                {
+                    return 7;
+                }
+
+                return -1; // Недопустимое время
+            }
+        }
     }
 }

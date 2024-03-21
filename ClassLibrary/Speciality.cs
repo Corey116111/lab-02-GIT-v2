@@ -22,5 +22,15 @@ namespace ClassLibrary
             this.date = DateTime.Today.ToString();
 
         }
+
+        public string Name
+        {
+            get { return name; }
+        }
+
+        public string Abbreviation
+        {
+            get { return abbreviation; }
+        }
     }
 }

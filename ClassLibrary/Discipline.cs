@@ -17,5 +17,10 @@ namespace ClassLibrary
         {
             this.name = name; this.shortName = shortName;
         }
+
+        public string Name
+        {
+            get { return name; }
+        }
     }
 }

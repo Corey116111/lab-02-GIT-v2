@@ -16,6 +16,7 @@ namespace ClassLibrary
         private string patronymic;
         private Group group;
         private string birth;
+
         public Student(string surname, string name, string patronymic, Group group, string birth)
         {
             this.surname = surname;
@@ -30,6 +31,11 @@ namespace ClassLibrary
             {
                 this.birth = DateTime.Today.ToString();
             }
+        }
+
+        public string FullName
+        {
+            get { return $"{surname} {name} {patronymic}"; }
         }
     }
 }

@@ -25,5 +25,10 @@ namespace ClassLibrary
             this.UserPatronymic = UserPatronymic;
             this.job_title = job_Title;
         }
+
+        public string FullName
+        {
+            get { return $"{UserSurname} {UserName} {UserPatronymic}"; }
+        }
     }
 }
