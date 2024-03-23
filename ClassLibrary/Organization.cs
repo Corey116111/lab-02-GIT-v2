@@ -6,9 +6,6 @@ using System.Threading.Tasks;
 
 namespace ClassLibrary
 {
-    /// <summary>
-    /// https://docs.google.com/document/d/1JN0SjEeelhtpKzoJqkva5JRePiMCLzyYPcI0Je8m7qU/edit
-    /// </summary>
     internal class Organisation
     {
         private string name;
@@ -20,25 +17,9 @@ namespace ClassLibrary
             this.name = name;
             this.legalAdress = legalAdress;
             this.actualAdress = actualAdress;
-            this.employee = employee;
+            this.employee = employee; 
+
         }
-
-        public string Name
-        {
-            get { return name; }
-        }
-
-
-        public string LegalAdress
-        {
-            get { return legalAdress; }
-        }
-
-        public string Windows
-        {
-            get { return actualAdress; }
-        }
-
     }
-}
 
+}
