@@ -10,20 +10,38 @@ namespace ClassLibrary
     /// <summary>
     /// https://docs.google.com/document/d/10XwtkjNB6-lRehWP_7qbgWC1nn_oIpa28ezyPXX3B28/edit
     /// </summary>
-    internal class Classroom
+    internal class ClassRoom
     {
         private string name;
         private Employee employee;
-        private int count_places;
-        private int count_windows;
-        //private Equipment[] equipment; -Вариант без владельца
-        public Classroom(string name, Employee employee, int count_places, int count_windows)
+        private int countPlaces;
+        private int countWindows;
+        private Equipment[] equipment;
+        public ClassRoom(string name, Employee employee, int countPlaces, int countWindows, Equipment[] equipment)
         {
             this.name = name;
             this.employee = employee;
-            this.count_places = count_places;
-            this.count_windows = count_windows;
-            //this.equipment = equipment;
+            this.countPlaces = countPlaces;
+            this.countWindows = countWindows;
+            this.equipment = equipment;
+        }
+
+        public string Number
+        {
+            get { return name; }
+        }
+
+        public Employee Employee { get { return employee; } }
+        public int Places
+        {
+            get { return countPlaces; }
+        }
+
+        public int Windows
+        {
+            get { return countWindows; }
         }
     }
+
+    public class Equipment { }
 }
