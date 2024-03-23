@@ -10,7 +10,7 @@ namespace ClassLibrary
     /// https://docs.google.com/document/d/1yBWzXRuxmOQiPQs9TyNx8tNgq6nWF42Sjn-mgT_-5nY/edit
     /// 10 variant
     /// </summary>
-    internal class JobTitle
+    public class JobTitle
     {
         private string name;
         private int salary;
