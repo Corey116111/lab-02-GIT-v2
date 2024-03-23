@@ -10,14 +10,14 @@ namespace ClassLibrary
     /// https://docs.google.com/document/d/1yBWzXRuxmOQiPQs9TyNx8tNgq6nWF42Sjn-mgT_-5nY/edit
     /// 10 variant
     /// </summary>
-    public class Job_title
+    public class JobTitle
     {
         private string name;
         private int salary;
         private Subdivision subdivision;
 
 
-        public Job_title(string name, int salary, Subdivision subdivision)
+        public JobTitle(string name, int salary, Subdivision subdivision)
         {
             this.name = name;
             this.salary = salary;
@@ -26,17 +26,8 @@ namespace ClassLibrary
 
         public string Name
         {
-            get { return name; }
+            get { return name;  }
         }
 
-        public int Salary
-        {
-            get { return salary; }
-        }
-
-        public Subdivision Subdivision
-        {
-            get { return subdivision; }
-        }
     }
 }
