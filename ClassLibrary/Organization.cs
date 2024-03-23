@@ -34,7 +34,7 @@ namespace ClassLibrary
             get { return legalAdress; }
         }
 
-        public string Windows
+        public string ActualAdress
         {
             get { return actualAdress; }
         }
