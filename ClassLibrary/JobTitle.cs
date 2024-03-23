@@ -24,5 +24,10 @@ namespace ClassLibrary
             this.subdivision = subdivision;
         }
 
+        public string Name
+        {
+            get { return name;  }
+        }
+
     }
 }
