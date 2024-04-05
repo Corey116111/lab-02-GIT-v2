@@ -1,22 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace ClassLibrary
 {
-    
+
     /// <summary>
     /// https://docs.google.com/document/d/10XwtkjNB6-lRehWP_7qbgWC1nn_oIpa28ezyPXX3B28/edit
     /// </summary>
-    internal class ClassRoom
+    public class ClassRoom
     {
-        private string name;
-        private Employee employee;
-        private int countPlaces;
-        private int countWindows;
-        private Equipment[] equipment;
+        private readonly string name;
+        private readonly Employee employee;
+        private readonly int countPlaces;
+        private readonly int countWindows;
+        private readonly Equipment[] equipment;
         public ClassRoom(string name, Employee employee, int countPlaces, int countWindows, Equipment[] equipment)
         {
             this.name = name;
@@ -26,22 +27,10 @@ namespace ClassLibrary
             this.equipment = equipment;
         }
 
-        public string Number
-        {
-            get { return name; }
-        }
-
+        public string Name { get { return name; } }
         public Employee Employee { get { return employee; } }
-        public int Places
-        {
-            get { return countPlaces; }
-        }
-
-        public int Windows
-        {
-            get { return countWindows; }
-        }
+        public int Places { get { return countPlaces; } }
+        public int Windows { get { return countWindows; } }
+        public Equipment[] Equipment { get { return equipment; } }
     }
-
-    public class Equipment { }
 }
