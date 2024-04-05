@@ -12,8 +12,14 @@ namespace ClassLibrary
         private string name;
         private string patronymic;
         private Group group;
+<<<<<<< Updated upstream
         private string birth;
         public Student(string surname, string name, string patronymic, Group group, string birth)
+=======
+        private DateTime birth;
+
+        public Student(string surname, string name, string patronymic, Group group, DateTime birth)
+>>>>>>> Stashed changes
         {
             this.surname = surname;
             this.name = name;
@@ -25,8 +31,32 @@ namespace ClassLibrary
             }
             else
             {
-                this.birth = DateTime.Today.ToString();
+                this.birth = DateTime.Today;
             }
         }
+<<<<<<< Updated upstream
+=======
+
+        public string Surname
+        {
+            get { return surname; }
+        }
+        public string Name
+        {
+            get { return name; }
+        }
+        public string Patronymic
+        {
+            get { return patronymic; }
+        }
+        public Group Group
+        {
+            get { return group; }
+        }
+         public DateTime Birth
+        {
+            get { return birth; }
+        }
+>>>>>>> Stashed changes
     }
 }
