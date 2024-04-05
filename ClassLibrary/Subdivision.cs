@@ -11,19 +11,34 @@ namespace ClassLibrary
     /// </summary>
     public class Subdivision
     {
-            private string name;
-            private Employee director;
-            private Organization organization;
+        private string name;
+        private Employee director;
+        private Organization organization;
+        private DateTime dateFoundation;
+
+
         public Subdivision(string name, Employee director, Organization organization)
         {
             this.name = name;
             this.director = director;
             this.organization = organization;
+            dateFoundation = DateTime.Now;
+        }
+        public Subdivision(string name, Employee director, Organization organization, DateTime date)
+        {
+            this.name = name;
+            this.director = director;
+            this.organization = organization;
+            dateFoundation = date;
         }
 
         public string Name
         {
             get { return name; }
+        }
+        public string DateFoundation
+        {
+            get { return dateFoundation.ToString(); }
         }
     }
 }
