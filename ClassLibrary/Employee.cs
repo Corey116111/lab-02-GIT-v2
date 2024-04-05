@@ -18,14 +18,14 @@ namespace ClassLibrary
         private readonly string Name;
         private readonly string Surname;
         private readonly string Patronymic;
-        private readonly Job_title job_title;
+        private readonly JobTitle jobtitle;
 
-        public Employee(string Name, string Surname, string Patronymic, Job_title job_Title)
+        public Employee(string Name, string Surname, string Patronymic, JobTitle jobTitle)
         {
             this.Name = Name;
             this.Surname = Surname;
             this.Patronymic = Patronymic;
-            this.job_title = job_Title;
+            this.jobtitle = jobTitle;
         }
 
         public string Names { get { return Name; } }
@@ -33,6 +33,6 @@ namespace ClassLibrary
 
         public string Patronymics { get { return Patronymic; } }
 
-        public Job_title Job_title => job_title;
+        public JobTitle JobTitle => jobtitle;
     }
 }

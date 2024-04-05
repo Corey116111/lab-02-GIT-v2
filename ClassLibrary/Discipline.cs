@@ -11,16 +11,10 @@ namespace ClassLibrary
     /// </summary>
     public class Discipline
     {
-        private string name;
-        private string shortName;
-        private DateTime dateHeld;
+        private readonly string name;
+        private readonly string shortName;
+        private readonly DateTime dateHeld;
 
-        public Discipline(string name, string shortName)
-        {
-            this.name = name;
-            this.shortName = shortName;
-            this.dateHeld = DateTime.Now;
-        }
         public Discipline(string name, string shortName, DateTime dateHeld)
         {
             this.name = name;
@@ -28,9 +22,19 @@ namespace ClassLibrary
             this.dateHeld = dateHeld;
         }
 
+        public string DateHeld
+        {
+            get { return dateHeld.ToString(); }
+        }
+
         public string Name
         {
             get { return name; }
+        }
+
+        public string ShortName
+        {
+            get { return shortName; }
         }
     }
 }

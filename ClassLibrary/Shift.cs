@@ -12,9 +12,9 @@ namespace ClassLibrary
     /// </summary>
     public class Shift
     {
-        private string name;
+        private readonly string name;
 
-        public Shift(string name, string date)
+        public Shift(string name)
         {
             this.name = name;
         }
@@ -22,11 +22,6 @@ namespace ClassLibrary
         public string Name
         {
             get { return name; }
-        }
-
-        public string Date
-        {
-            get { return date; }
         }
     }
 }

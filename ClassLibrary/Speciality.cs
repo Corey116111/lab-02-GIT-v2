@@ -11,16 +11,14 @@ namespace ClassLibrary
     /// </summary>
     public class Speciality
     {
-        private string name;
-        private string abbreviation;
+        private readonly string name;
+        private readonly string abbreviation;
      
 
         public Speciality(string name, string abbreviation)
         {
             this.name = name;
             this.abbreviation = abbreviation;
-          
-
         }
 
         public string Name
