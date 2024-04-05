@@ -3,8 +3,10 @@ using ClassLibrary;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace ClassLibrary
 {
@@ -13,22 +15,24 @@ namespace ClassLibrary
     /// </summary>
     public class Employee
     {
-        private string UserName;
-        private string UserSurname;
-        private string UserPatronymic;
-        private Job_title job_title;
+        private readonly string Name;
+        private readonly string Surname;
+        private readonly string Patronymic;
+        private readonly Job_title job_title;
 
-        public Employee(string UserName, string UserSurname, string UserPatronymic, Job_title job_Title)
+        public Employee(string Name, string Surname, string Patronymic, Job_title job_Title)
         {
-            this.UserName = UserName;
-            this.UserSurname = UserSurname;
-            this.UserPatronymic = UserPatronymic;
+            this.Name = Name;
+            this.Surname = Surname;
+            this.Patronymic = Patronymic;
             this.job_title = job_Title;
         }
 
-        public string FullName
-        {
-            get { return $"{UserSurname} {UserName} {UserPatronymic}"; }
-        }
+        public string Names { get { return Name; } }
+        public string Surnames { get { return Surname; } }
+
+        public string Patronymics { get { return Patronymic; } }
+
+        public Job_title Job_title => job_title;
     }
 }
