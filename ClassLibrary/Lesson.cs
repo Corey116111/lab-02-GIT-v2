@@ -8,23 +8,31 @@ namespace ClassLibrary
 {
     internal class Lesson
     {
-        private string date;
-        private Discipline discipline;
-        private Employee employee;
-        private Classroom classroom;
-        private Group group;
-        private Pair pair;
-        private Body body; /// 14 варианта у нас нет, поэтому ссылаюсь на 13
-
-        public Lesson(string date, Discipline discipline, Employee employee, Classroom classroom, Group group, Pair pair, Body body)
+        private readonly DateTime dateHeld;
+        private readonly Discipline discipline;
+        private readonly Employee employee;
+        private readonly Classroom classroom;
+        private readonly Group group;
+        private readonly Pair pair;
+        private readonly TypeOfActivity typeOfActivity;
+        
+        public Lesson(DateTime dateHeld, Discipline discipline, Employee employee, Classroom classroom, Group group, Pair pair, TypeOfActivity lessonType)
         {
-            this.date = DateTime.Today.ToString();
+            this.dateHeld = dateHeld != default ? dateHeld : DateTime.Now;
             this.discipline = discipline;
             this.employee = employee;
             this.classroom = classroom;
             this.group = group;
             this.pair = pair;
-            this.body = body;
+            this.typeOfActivity = lessonType;
         }
+
+        public DateTime DateHeld => dateHeld;
+        public Discipline Discipline => discipline;
+        public Employee Employe => employee;
+        public Classroom Classroom => classroom;
+        public Group Group => group;
+        public Pair Pair => pair;
+        public TypeOfActivity TypeOfActivity => typeOfActivity;
     }
 }
