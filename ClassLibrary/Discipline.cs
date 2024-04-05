@@ -13,18 +13,11 @@ namespace ClassLibrary
     {
         private readonly string name;
         private readonly string shortName;
-        private readonly DateTime dateHeld;
 
-        public Discipline(string name, string shortName, DateTime dateHeld)
+        public Discipline(string name, string shortName)
         {
             this.name = name;
             this.shortName = shortName;
-            this.dateHeld = dateHeld;
-        }
-
-        public string DateHeld
-        {
-            get { return dateHeld.ToString(); }
         }
 
         public string Name

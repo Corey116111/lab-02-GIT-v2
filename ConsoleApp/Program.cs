@@ -9,19 +9,20 @@ namespace ConsoleApp
 {
     class Program
     {
-        static List<Lesson> lessons = new List<Lesson>();
-        static List<Classroom> classrooms = new List<Classroom>();
-        static List<Discipline> disciplines = new List<Discipline>();
-        static List<Group> groups = new List<Group>();
-        static List<Student> students = new List<Student>();
-        static List<Speciality> specialties = new List<Speciality>();
-        static List<Pair> pairs = new List<Pair>();
-        static List<Shift> shifts = new List<Shift>();
-        static List<Employee> employees = new List<Employee>();
-        static List<Job_title> positions = new List<Job_title>();
-        static List<Subdivision> subdivisions = new List<Subdivision>();
-        static List<Organization> organizations = new List<Organization>();
-        static List<Body> bodies = new List<Body>();
+        static readonly List<Lesson> lessons = new List<Lesson>();
+        static readonly List<Classroom> classrooms = new List<Classroom>();
+        static readonly List<Discipline> disciplines = new List<Discipline>();
+        static readonly List<Group> groups = new List<Group>();
+        static readonly List<Student> students = new List<Student>();
+        static readonly List<Speciality> specialties = new List<Speciality>();
+        static readonly List<Pair> pairs = new List<Pair>();
+        static readonly List<Shift> shifts = new List<Shift>();
+        static readonly List<Employee> employees = new List<Employee>();
+        static readonly List<JobTitle> positions = new List<JobTitle>();
+        static readonly List<Subdivision> subdivisions = new List<Subdivision>();
+        static readonly List<Organization> organizations = new List<Organization>();
+        static readonly List<Body> bodies = new List<Body>();
+        static readonly List<TypeOfActivity> TypesOfActivity = new List<TypeOfActivity>();
 
         static void Main()
         {
@@ -42,7 +43,8 @@ namespace ConsoleApp
                 Console.WriteLine("11. Создать подразделение");
                 Console.WriteLine("12. Создать организацию");
                 Console.WriteLine("13. Создать корпус");
-                Console.WriteLine("14. Выход");
+                Console.WriteLine("14. Создать вид деятельности");
+                Console.WriteLine("15. Выход");
 
                 int choice = Convert.ToInt32(Console.ReadLine());
                 switch (choice)
@@ -103,8 +105,8 @@ namespace ConsoleApp
             Discipline discipline = disciplines.FirstOrDefault(d => d.Name.ToLower() == disciplineName.ToLower());
             if (discipline == null)
             {
-                Console.WriteLine("Дисциплина не найдена. Создание занятия отменено.");
-                return;
+                Console.WriteLine("Дисциплина не найдена. Создайте дисциплину.");
+                CreateDiscipline();
             }
 
             Console.WriteLine("Введите ФИО преподавателя:");
@@ -112,8 +114,8 @@ namespace ConsoleApp
             Employee employee = employees.FirstOrDefault(e => e.FullName.ToLower() == employeeName.ToLower());
             if (employee == null)
             {
-                Console.WriteLine("Преподаватель не найден. Создание занятия отменено.");
-                return;
+                Console.WriteLine("Преподаватель не найден. Создайте преподавателя.");
+                CreateEmployee();
             }
 
             Console.WriteLine("Введите номер аудитории:");
@@ -121,17 +123,21 @@ namespace ConsoleApp
             Classroom classroom = classrooms.FirstOrDefault(c => c.Number == classroomNumber);
             if (classroom == null)
             {
-                Console.WriteLine("Аудитория не найдена. Создание занятия отменено.");
-                return;
+                Console.WriteLine("Аудитория не найдена. Создайте аудиторию.");
+                CreateClassroom();
             }
 
-            Console.WriteLine("Введите номер пары от 1 до 7:");
-            int pairNumber = Convert.ToInt32(Console.ReadLine());
-            Pair pair = pairs.FirstOrDefault(p => p.Number == pairNumber);
+            Console.WriteLine("Введите начало пары (в формате чч:мм):");
+            string pairStart = Console.ReadLine();
+
+            Console.WriteLine("Введите конец пары (в формате чч:мм):");
+            string pairEnd = Console.ReadLine();
+
+            Pair pair = pairs.FirstOrDefault(p => p.Time_pair_start == pairStart && p.Time_pair_end == pairEnd);
             if (pair == null)
             {
-                Console.WriteLine("Пара не найдена. Создание занятия отменено.");
-                return;
+                Console.WriteLine("Пара не найдена. Создайте его.");
+                CreatePair();
             }
 
             Console.WriteLine("Введите название группы:");
@@ -139,24 +145,27 @@ namespace ConsoleApp
             Group group = groups.FirstOrDefault(g => g.Name.ToLower() == groupName.ToLower());
             if (group == null)
             {
-                Console.WriteLine("Группа не найдена. Создание занятия отменено.");
-                return;
+                Console.WriteLine("Группа не найдена. Создайте ее.");
+                CreateGroup();
             }
 
-            Console.WriteLine("Введите букву корпуса:");
-            string bodyLetter = Console.ReadLine().ToUpper();
-            Body body = bodies.FirstOrDefault(b => b.Letter == bodyLetter);
-            if (body == null)
+            Console.WriteLine("Введите вид деятельности:");
+            char activityLetter = char.Parse(Console.ReadLine().ToUpper());
+
+            TypeOfActivity typeofactivity = TypesOfActivity.FirstOrDefault(a => a.Letter == activityLetter);
+            if (typeofactivity == null)
             {
-                Console.WriteLine("Корпус не найден. Создание занятия отменено.");
-                return;
+                Console.WriteLine("Вид деятельности не найден. Создайте его.");
+                CreateTypeOfActivity();
             }
 
-            Lesson lesson = new Lesson(null, discipline, employee, classroom, group, pair, body);
+            Console.WriteLine("Введите дату: ");
+            string dateHeld = Console.ReadLine();
+            Lesson lesson = new Lesson(DateTime.Parse(dateHeld), discipline, employee, classroom, group, pair, typeofactivity);
             lessons.Add(lesson);
             Console.WriteLine("Занятие успешно создано.");
         }
-
+        
         static void CreateClassroom()
         {
             Console.WriteLine("Введите номер аудитории:");
@@ -168,8 +177,8 @@ namespace ConsoleApp
             Employee employee = employees.FirstOrDefault(e => e.FullName.ToLower() == employeeName.ToLower());
             if (employee == null)
             {
-                Console.WriteLine("Сотрудник не найден. Создание аудитории отменено.");
-                return;
+                Console.WriteLine("Сотрудник не найден. Создайте его");
+                CreateEmployee();
             }
 
             Console.WriteLine("Введите количество мест в аудитории:");
@@ -178,7 +187,12 @@ namespace ConsoleApp
             Console.WriteLine("Введите количество окон в аудитории:");
             int windows = Convert.ToInt32(Console.ReadLine());
 
-            Classroom classroom = new Classroom(classroomNumber, employee, places, windows);
+            Console.WriteLine("Введите список ссылок на оборудование: ");
+            
+            int n = Convert.ToInt32(Console.ReadLine());
+
+            Equipment[] equipment = new Equipment[n];
+            Classroom classroom = new Classroom(classroomNumber, employee, places, windows, equipment);
             classrooms.Add(classroom);
 
             Console.WriteLine("Аудитория успешно создана.");
@@ -214,8 +228,8 @@ namespace ConsoleApp
             Speciality speciality = specialties.FirstOrDefault(s => s.Name.ToLower() == specialityName.ToLower());
             if (speciality == null)
             {
-                Console.WriteLine("Специальность не найдена. Создание группы отменено.");
-                return;
+                Console.WriteLine("Специальность не найдена. Создайте ее.");
+                CreateSpeciality();
             }
 
             Console.WriteLine("Введите ФИО куратора группы:");
@@ -223,8 +237,8 @@ namespace ConsoleApp
             Employee employee = employees.FirstOrDefault(e => e.FullName.ToLower() == employeeName.ToLower());
             if (employee == null)
             {
-                Console.WriteLine("Куратор не найден. Создание группы отменено.");
-                return;
+                Console.WriteLine("Куратор не найден. Создайте его.");
+                CreateEmployee(); ;
             }
 
             Console.WriteLine("Введите год создания группы (пустое значение означает текущий год):");
@@ -252,14 +266,14 @@ namespace ConsoleApp
             Group group = groups.FirstOrDefault(g => g.Name.ToLower() == groupName.ToLower());
             if (group == null)
             {
-                Console.WriteLine("Группа не найдена. Создание студента отменено.");
-                return;
+                Console.WriteLine("Группа не найдена. Создайте ее");
+                CreateGroup();
             }
 
             Console.WriteLine("Введите дату рождения студента (пустое значение означает текущую дату):");
             string birth = Console.ReadLine();
 
-            Student student = new Student(surname, name, patronymic, group, birth);
+            Student student = new Student(surname, name, patronymic, group, DateTime.Parse(birth));
             students.Add(student);
             Console.WriteLine("Студент успешно создан.");
         }
@@ -272,14 +286,11 @@ namespace ConsoleApp
             Console.WriteLine("Введите сокращенное название специальности:");
             string abbreviation = Console.ReadLine();
 
-            Console.WriteLine("Введите дату создания специальности (пустое значение означает текущую дату):");
-            string date = Console.ReadLine();
-
-            Speciality speciality = new Speciality(name, abbreviation, date);
+            Speciality speciality = new Speciality(name, abbreviation);
             specialties.Add(speciality);
             Console.WriteLine("Специальность успешно создана.");
         }
-
+        
         static void CreatePair()
         {
             Console.WriteLine("Введите время начала пары (в формате чч:мм):");
@@ -299,8 +310,8 @@ namespace ConsoleApp
             Shift shift = shifts.FirstOrDefault(s => s.Name.ToLower() == shiftName.ToLower());
             if (shift == null)
             {
-                Console.WriteLine("Смена не найдена. Создание пары отменено.");
-                return;
+                Console.WriteLine("Смена не найдена. Создайте ее");
+                CreateShift();
             }
 
             Pair pair = new Pair(timePairStart, timePairEnd, timeBreakStart, timeBreakEnd, shift);
@@ -313,10 +324,7 @@ namespace ConsoleApp
             Console.WriteLine("Введите название смены:");
             string name = Console.ReadLine();
 
-            Console.WriteLine("Введите дату создания смены (пустое значение означает текущую дату):");
-            string date = Console.ReadLine();
-
-            Shift shift = new Shift(name, date);
+            Shift shift = new Shift(name);
             shifts.Add(shift);
             Console.WriteLine("Смена успешно создана.");
         }
@@ -334,18 +342,18 @@ namespace ConsoleApp
 
             Console.WriteLine("Введите название должности:");
             string jobTitleName = Console.ReadLine();
-            Job_title jobTitle = positions.FirstOrDefault(j => j.Name.ToLower() == jobTitleName.ToLower());
+            JobTitle jobTitle = positions.FirstOrDefault(j => j.Name.ToLower() == jobTitleName.ToLower());
             if (jobTitle == null)
             {
-                Console.WriteLine("Должность не найдена. Создание сотрудника отменено.");
-                return;
+                Console.WriteLine("Должность не найдена. Создайте ее");
+                CreateJobTitle();
             }
 
             Employee employee = new Employee(name, surname, patronymic, jobTitle);
             employees.Add(employee);
             Console.WriteLine("Сотрудник успешно создан.");
         }
-
+        
         static void CreateJobTitle()
         {
             Console.WriteLine("Введите название должности:");
@@ -359,11 +367,11 @@ namespace ConsoleApp
             Subdivision subdivision = subdivisions.FirstOrDefault(s => s.Name.ToLower() == subdivisionName.ToLower());
             if (subdivision == null)
             {
-                Console.WriteLine("Подразделение не найдено. Создание должности отменено.");
-                return;
+                Console.WriteLine("Подразделение не найдено. Создайте его");
+                CreateSubdivision();
             }
 
-            Job_title jobTitle = new Job_title(name, salary, subdivision);
+            JobTitle jobTitle = new JobTitle(name, salary, subdivision);
             positions.Add(jobTitle);
             Console.WriteLine("Должность успешно создана.");
         }
@@ -378,8 +386,8 @@ namespace ConsoleApp
             Employee director = employees.FirstOrDefault(e => e.FullName == directorFullName);
             if (director == null)
             {
-                Console.WriteLine("Директор не найден. Создание подразделения отменено.");
-                return;
+                Console.WriteLine("Директор не найден. Создайте его.");
+                CreateEmployee();
             }
 
             Console.WriteLine("Введите название организации:");
@@ -387,8 +395,8 @@ namespace ConsoleApp
             Organization organization = organizations.FirstOrDefault(o => o.Name.ToLower() == organizationName.ToLower());
             if (organization == null)
             {
-                Console.WriteLine("Организация не найдена. Создание подразделения отменено.");
-                return;
+                Console.WriteLine("Организация не найдена. Создайте ее");
+                CreateOrganization();
             }
 
             Subdivision subdivision = new Subdivision(name, director, organization);
@@ -412,11 +420,11 @@ namespace ConsoleApp
             Employee supervisor = employees.FirstOrDefault(e => e.FullName == supervisorFullName);
             if (supervisor == null)
             {
-                Console.WriteLine("Руководитель не найден. Создание организации отменено.");
-                return;
+                Console.WriteLine("Руководитель не найден. Создайте его");
+                CreateEmployee();
             }
 
-            Organization organization = new Organization(name, legalAddress, actualAddress, supervisorFullName, supervisor);
+            Organization organization = new Organization(name, legalAddress, actualAddress, supervisor);
             organizations.Add(organization);
             Console.WriteLine("Организация успешно создана.");
         }
@@ -434,17 +442,8 @@ namespace ConsoleApp
             Employee commandant = employees.FirstOrDefault(e => e.FullName == commandantFullName);
             if (commandant == null)
             {
-                Console.WriteLine("Комендант не найден. Создание корпуса отменено.");
-                return;
-            }
-
-            Console.WriteLine("Введите фамилию, имя и отчество студента, который будет проживать в корпусе:");
-            string studentFullName = Console.ReadLine();
-            Student student = students.FirstOrDefault(s => s.FullName == studentFullName);
-            if (student == null)
-            {
-                Console.WriteLine("Студент не найден. Создание корпуса отменено.");
-                return;
+                Console.WriteLine("Комендант не найден. Создайте его");
+                CreateEmployee();
             }
 
             Console.WriteLine("Введите название организации, которой принадлежит корпус:");
@@ -452,13 +451,24 @@ namespace ConsoleApp
             Organization organization = organizations.FirstOrDefault(o => o.Name.ToLower() == organizationName.ToLower());
             if (organization == null)
             {
-                Console.WriteLine("Организация не найдена. Создание корпуса отменено.");
-                return;
+                Console.WriteLine("Организация не найдена. Создайте ее");
+                CreateOrganization();
             }
 
-            Body body = new Body(name, address, commandantFullName, student, organization);
+            Body body = new Body(name, address, commandant, organization);
             bodies.Add(body);
             Console.WriteLine("Корпус успешно создан.");
+        }
+
+        static void CreateTypeOfActivity()
+        {
+            Console.WriteLine("Введите букву вида деятельности:");
+            char activityLetter = char.Parse(Console.ReadLine().ToUpper());
+
+            TypeOfActivity activity = new TypeOfActivity { Letter = activityLetter };
+            TypesOfActivity.Add(activity);
+            
+            Console.WriteLine("Вид деятельности успешно создан.");
         }
     }
 }

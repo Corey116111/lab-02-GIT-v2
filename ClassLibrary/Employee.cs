@@ -34,5 +34,7 @@ namespace ClassLibrary
         public string Patronymics { get { return Patronymic; } }
 
         public JobTitle JobTitle => jobtitle;
+
+        public string FullName => $"{Surname} {Name} {Patronymic}";
     }
 }

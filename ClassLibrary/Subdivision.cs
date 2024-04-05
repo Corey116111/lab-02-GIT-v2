@@ -14,23 +14,17 @@ namespace ClassLibrary
         private readonly string name;
         private readonly Employee director;
         private readonly Organization organization;
-        private readonly DateTime dateFoundation;
 
-        public Subdivision(string name, Employee director, Organization organization, DateTime date)
+        public Subdivision(string name, Employee director, Organization organization)
         {
             this.name = name;
             this.director = director;
             this.organization = organization;
-            dateFoundation = date;
         }
 
         public string Name
         {
             get { return name; }
-        }
-        public string DateFoundation
-        {
-            get { return dateFoundation.ToString(); }
         }
 
         public Employee Employe => director;

@@ -27,7 +27,7 @@ namespace ClassLibrary
             this.equipment = equipment;
         }
 
-        public string Name { get { return name; } }
+        public string Number { get { return name; } }
         public Employee Employee { get { return employee; } }
         public int Places { get { return countPlaces; } }
         public int Windows { get { return countWindows; } }
