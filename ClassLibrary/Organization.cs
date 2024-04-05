@@ -26,6 +26,6 @@ namespace ClassLibrary
         public string LegalAdress { get { return legalAdress; } }
         public string ActualAdress { get { return actualAdress; } }
         public Employee Employee { get { return employee; } }
+        }
     }
-
 }
