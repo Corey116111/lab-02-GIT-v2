@@ -11,14 +11,14 @@ namespace ClassLibrary
     /// <summary>
     /// https://docs.google.com/document/d/10XwtkjNB6-lRehWP_7qbgWC1nn_oIpa28ezyPXX3B28/edit 2 вариант
     /// </summary>
-    public class ClassRoom
+    public class Classroom
     {
         private readonly string name;
         private readonly Employee employee;
         private readonly int countPlaces;
         private readonly int countWindows;
         private readonly Equipment[] equipment;
-        public ClassRoom(string name, Employee employee, int countPlaces, int countWindows, Equipment[] equipment)
+        public Classroom(string name, Employee employee, int countPlaces, int countWindows, Equipment[] equipment)
         {
             this.name = name;
             this.employee = employee;
