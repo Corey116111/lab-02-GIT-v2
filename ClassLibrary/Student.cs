@@ -6,20 +6,18 @@ using System.Threading.Tasks;
 
 namespace ClassLibrary
 {
-    internal class Student
+    /// <summary>
+    /// https://docs.google.com/document/d/1FrtPd2tz85cDVhZCYXqL0wrByPjNbd6kUbjXzOzfLPc/edit 5 вариант
+    /// </summary>
+    public class Student
     {
-        private string surname;
-        private string name;
-        private string patronymic;
-        private Group group;
-<<<<<<< Updated upstream
-        private string birth;
-        public Student(string surname, string name, string patronymic, Group group, string birth)
-=======
-        private DateTime birth;
-
+        private readonly string surname;
+        private readonly string name;
+        private readonly string patronymic;
+        private readonly Group group;
+        private readonly DateTime birth;
+      
         public Student(string surname, string name, string patronymic, Group group, DateTime birth)
->>>>>>> Stashed changes
         {
             this.surname = surname;
             this.name = name;
@@ -34,8 +32,6 @@ namespace ClassLibrary
                 this.birth = DateTime.Today;
             }
         }
-<<<<<<< Updated upstream
-=======
 
         public string Surname
         {
@@ -57,6 +53,10 @@ namespace ClassLibrary
         {
             get { return birth; }
         }
->>>>>>> Stashed changes
+
+        public string FullName
+        {
+            get { return $"{surname} {name} {patronymic}"; }
+        }
     }
 }
