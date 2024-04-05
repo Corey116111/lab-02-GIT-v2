@@ -18,13 +18,11 @@ namespace ClassLibrary
             this.student = student;
             this.organization = organization;
         }
-
         public string Name { get { return name; } }
         public string Address { get { return address; } }
         
         public Student Student => student;
 
         public Organization Organization => organization;  
-
     }
 }
