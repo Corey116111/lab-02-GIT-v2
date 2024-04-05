@@ -9,12 +9,10 @@ namespace ClassLibrary
     internal class Shift
     {
         private string name;
-        private string date;
 
         public Shift(string name, string date)
         {
             this.name = name;
-            this.date = DateTime.Today.ToString();
         }
     }
 }
