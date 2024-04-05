@@ -1,4 +1,4 @@
-﻿// https://docs.google.com/document/d/1dhWsZqo-d1x4uk0y45lDVnu4H91wRvpRWKJ0lfCizxY/edit
+﻿
 using ClassLibrary;
 using System;
 using System.Collections.Generic;
@@ -10,7 +10,9 @@ using System.Xml.Linq;
 
 namespace ClassLibrary
 {
-
+    /// <summary>
+    /// https://docs.google.com/document/d/1dhWsZqo-d1x4uk0y45lDVnu4H91wRvpRWKJ0lfCizxY/edit 9 вариант
+    /// </summary>
     public class Employee
     {
         private readonly string Name;
