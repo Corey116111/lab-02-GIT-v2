@@ -199,7 +199,7 @@ namespace ConsoleApp
             DB.students.Add(student);
             Console.WriteLine("Студент успешно создан.");
         }
-
+        
         public static void CreateSpeciality()
         {
             Console.WriteLine("Введите название специальности:");
@@ -391,6 +391,6 @@ namespace ConsoleApp
             DB.TypesOfActivity.Add(activity);
 
             Console.WriteLine("Вид деятельности успешно создан.");
-        }
+        } /// тут какая-то ШВАЙНЦ СОБАКА
     }
 }

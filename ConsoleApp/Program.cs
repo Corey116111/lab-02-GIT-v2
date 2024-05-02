@@ -36,7 +36,8 @@ namespace ConsoleApp
                     Console.WriteLine("12. Создать организацию");
                     Console.WriteLine("13. Создать корпус");
                     Console.WriteLine("14. Создать вид деятельности");
-                    Console.WriteLine("15. Выход");
+                    Console.WriteLine("15. Вывод данных");
+                    Console.WriteLine("16. Выход");
 
                     int choice = Convert.ToInt32(Console.ReadLine());
                     switch (choice)
@@ -84,6 +85,26 @@ namespace ConsoleApp
                             Creator.CreateTypeOfActivity();
                             break;
                         case 15:
+                            Console.WriteLine("Выберите класс для вывода списка объектов:");
+                            Console.WriteLine("1. Корпус");
+                            Console.WriteLine("2. Аудитория");
+                            Console.WriteLine("3. Дисциплина");
+                            Console.WriteLine("4. Группа");
+                            Console.WriteLine("5. Студент");
+                            Console.WriteLine("6. Специальность");
+                            Console.WriteLine("7. Пара");
+                            Console.WriteLine("8. Смена");
+                            Console.WriteLine("9. Работник");
+                            Console.WriteLine("10. Должность");
+                            Console.WriteLine("11. Подразделение");
+                            Console.WriteLine("12. Организация");
+                            Console.WriteLine("13. Вид деятельности");
+                            Console.WriteLine("14. Занятие");
+                            Console.WriteLine("15. Выход.");
+                            int classChoice = Convert.ToInt32(Console.ReadLine());
+                            Printer.PrintObjectsList(classChoice);
+                            break;
+                        case 16:
                             exit = true;
                             break;
                         default:
