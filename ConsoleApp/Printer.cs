@@ -13,26 +13,26 @@ namespace ConsoleApp
         {
             Console.WriteLine("Урок:");
             Console.WriteLine($"Дата: {lesson.DateHeld}");
-            Console.WriteLine($"Дисциплина: {lesson.Discipline}");
-            Console.WriteLine($"Преподаватель: {lesson.Employe}");
+            Console.WriteLine($"Дисциплина: {lesson.Discipline.Name}");
+            Console.WriteLine($"Преподаватель: {lesson.Employee.Name} {lesson.Employee.Surname} {lesson.Employee.Patronymic}");
             Console.WriteLine($"Аудитория: {lesson.Classroom.Number}");
             Console.WriteLine($"Группа: {lesson.Group.Name}");
             Console.WriteLine($"Пара: {lesson.Pair.Time_pair_start}-{lesson.Pair.Time_pair_end}");
             Console.WriteLine($"Вид деятельности: {lesson.TypeOfActivity.Letter}");
         }
 
-        public static void PrintDiscipline(Discipline discipline)
+        public static void PrintDiscipline(Discipline discipline) // good
         {
             Console.WriteLine("Дисциплина:");
             Console.WriteLine($"Название: {discipline.Name}");
             Console.WriteLine($"Краткое название: {discipline.ShortName}");
         }
-
+        
         public static void PrintClassroom(Classroom classroom)
         {
             Console.WriteLine("Аудитория:");
             Console.WriteLine($"Номер: {classroom.Number}");
-            Console.WriteLine($"Ответственный сотрудник: {classroom.Employee}");
+            Console.WriteLine($"Ответственный сотрудник: {classroom.Employee.Name} {classroom.Employee.Surname} {classroom.Employee.Patronymic}");
             Console.WriteLine($"Количество мест: {classroom.Places}");
             Console.WriteLine($"Количество окон: {classroom.Windows}");
             Console.WriteLine($"Оборудование: {string.Join<Equipment>(", ", classroom.Equipment)}");
@@ -45,8 +45,8 @@ namespace ConsoleApp
             Console.WriteLine($"Краткое название: {group.Shortname}");
             Console.WriteLine($"Количество студентов: {group.Quantity}");
             Console.WriteLine($"Год создания: {group.Year}");
-            Console.WriteLine($"Специальность: {group.Speciality}");
-            Console.WriteLine($"Классный руководитель: {group.Classroomteatcher}");
+            Console.WriteLine($"Специальность: {group.Speciality.Name}");
+            Console.WriteLine($"Классный руководитель: {group.Classroomteatcher.Name} {group.Classroomteatcher.Surname} {group.Classroomteatcher.Patronymic}");
         }
 
         public static void PrintStudent(Student student)
@@ -56,7 +56,7 @@ namespace ConsoleApp
             Console.WriteLine($"Имя: {student.Name}");
             Console.WriteLine($"Отчество: {student.Patronymic}");
             Console.WriteLine($"Группа: {student.Group.Name}");
-            Console.WriteLine($"Дата рождения: {student.Birth.ToString("dd.MM.yyyy")}");
+            Console.WriteLine($"Дата рождения: {student.Birth:dd.MM.yyyy}");
         }
 
         public static void PrintSpeciality(Speciality speciality)
@@ -66,7 +66,7 @@ namespace ConsoleApp
             Console.WriteLine($"Аббревиатура: {speciality.Abbreviation}");
         }
 
-        public static void PrintPair(Pair pair)
+        public static void PrintPair(Pair pair) // good
         {
             Console.WriteLine("Пара:");
             Console.WriteLine($"Начало: {pair.Time_pair_start}");
@@ -76,22 +76,22 @@ namespace ConsoleApp
             Console.WriteLine($"Смена: {pair.Shift.Name}");
         }
 
-        public static void PrintShift(Shift shift)
+        public static void PrintShift(Shift shift) // good
         {
             Console.WriteLine("Смена:");
             Console.WriteLine($"Название: {shift.Name}");
         }
-
+        
         public static void PrintEmployee(Employee employee)
         {
             Console.WriteLine("Сотрудник:");
-            Console.WriteLine($"Имя: {employee.Names}");
-            Console.WriteLine($"Фамилия: {employee.Surnames}");
-            Console.WriteLine($"Отчество: {employee.Patronymics}");
+            Console.WriteLine($"Имя: {employee.Name}");
+            Console.WriteLine($"Фамилия: {employee.Surname}");
+            Console.WriteLine($"Отчество: {employee.Patronymic}");
             Console.WriteLine($"Должность: {employee.JobTitle.Name}");
         }
 
-        public static void PrintJobTitle(JobTitle jobTitle)
+        public static void PrintJobTitle(JobTitle jobTitle) // good
         {
             Console.WriteLine("Должность:");
             Console.WriteLine($"Название: {jobTitle.Name}");
@@ -103,7 +103,7 @@ namespace ConsoleApp
         {
             Console.WriteLine("Подразделение:");
             Console.WriteLine($"Название: {subdivision.Name}");
-            Console.WriteLine($"Руководитель: {subdivision.Employe}");
+            Console.WriteLine($"Руководитель: {subdivision.Employee.Name} {subdivision.Employee.Surname} {subdivision.Employee.Patronymic}");
             Console.WriteLine($"Организация: {subdivision.Organization.Name}");
         }
 
@@ -113,7 +113,10 @@ namespace ConsoleApp
             Console.WriteLine($"Название: {organization.Name}");
             Console.WriteLine($"Юридический адрес: {organization.LegalAdress}");
             Console.WriteLine($"Фактический адрес: {organization.ActualAdress}");
-            Console.WriteLine($"Руководитель: {organization.Employee}");
+            if (organization != null && organization.Employee != null)
+            {
+                Console.WriteLine($"Руководитель:  {organization.Employee.Surname} {organization.Employee.Name} {organization.Employee.Patronymic}");
+            }
         }
 
         public static void PrintBody(Body body)
@@ -121,11 +124,18 @@ namespace ConsoleApp
             Console.WriteLine("Корпус:");
             Console.WriteLine($"Название: {body.Name}");
             Console.WriteLine($"Адрес: {body.Address}");
-            Console.WriteLine($"Ответственный сотрудник: {body.Employee}");
-            Console.WriteLine($"Организация: {body.Organization}");
+            if (body.Employee != null)
+            {
+                Console.WriteLine($"Ответственный сотрудник: {body.Employee.Name} {body.Employee.Surname} {body.Employee.Patronymic}");
+            }
+            else
+            {
+                Console.WriteLine("Комендант не указан");
+            }
+            Console.WriteLine($"Организация: {body.Organization.Name}");
         }
-
-        public static void PrintTypeOfActivity(TypeOfActivity typeofactivity)
+        
+        public static void PrintTypeOfActivity(TypeOfActivity typeofactivity) // good
         {
             Console.WriteLine("Вид деятельности:");
             Console.WriteLine($"Буква: {typeofactivity.Letter}");

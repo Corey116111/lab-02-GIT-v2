@@ -22,14 +22,17 @@ namespace ConsoleApp
                 CreateDiscipline();
             }
 
+            discipline = DB.disciplines.FirstOrDefault(d => d.Name.ToLower() == disciplineName.ToLower());
+
             Console.WriteLine("Введите ФИО преподавателя:");
             string employeeName = Console.ReadLine();
-            Employee employee = DB.employees.FirstOrDefault(e => e.FullName.ToLower() == employeeName.ToLower());
+            Employee employee = DB.employees.FirstOrDefault(e => $"{e.Name} {e.Surname} {e.Patronymic}".ToLower() == employeeName.ToLower());
             if (employee == null)
             {
                 Console.WriteLine("Преподаватель не найден. Задайте преподавателя.");
                 CreateEmployee();
-            }
+                employee = DB.employees.Last();
+            }     
 
             Console.WriteLine("Введите номер аудитории:");
             string classroomNumber = Console.ReadLine();
@@ -38,18 +41,36 @@ namespace ConsoleApp
             {
                 Console.WriteLine("Аудитория не найдена. Задайте номер аудитории.");
                 CreateClassroom();
+                classroom = DB.classrooms.Last();
             }
+
+
+
             Console.WriteLine("Введите начало пары (в формате чч:мм):");
             string pairStart = Console.ReadLine();
 
+            while (!ValidateTimeFormat(pairStart))
+            {
+                Console.WriteLine("Введенное время не соответствует формату чч:мм. Повторите ввод:");
+                pairStart = Console.ReadLine();
+            }
+
             Console.WriteLine("Введите конец пары (в формате чч:мм):");
             string pairEnd = Console.ReadLine();
+
+            while (!ValidateTimeFormat(pairEnd))
+            {
+                Console.WriteLine("Введенное время не соответствует формату чч:мм. Повторите ввод:");
+                pairEnd = Console.ReadLine();
+            }
+
 
             Pair pair = DB.pairs.FirstOrDefault(p => p.Time_pair_start == pairStart && p.Time_pair_end == pairEnd);
             if (pair == null)
             {
                 Console.WriteLine("Пара не найдена. Создайте его.");
                 CreatePair();
+                pair = DB.pairs.Last();
             }
 
             Console.WriteLine("Введите название группы:");
@@ -59,6 +80,7 @@ namespace ConsoleApp
             {
                 Console.WriteLine("Группа не найдена. Задайте название группы.");
                 CreateGroup();
+                group = DB.groups.Last();
             }
 
             Console.WriteLine("Введите букву корпуса:");
@@ -68,6 +90,7 @@ namespace ConsoleApp
             {
                 Console.WriteLine("Корпус не найден. Задайте букву корпуса.");
                 CreateBody();
+                body = DB.bodies.Last();
             }
 
             Console.WriteLine("Введите дату:");
@@ -81,13 +104,15 @@ namespace ConsoleApp
             {
                 Console.WriteLine("Вид деятельности не найден. Создайте его.");
                 CreateTypeOfActivity();
+                typeofactivity = DB.TypesOfActivity.Last();
             }
+
 
             Lesson lesson = new Lesson(DateTime.Parse(date), discipline, employee, classroom, group, pair, typeofactivity);
             DB.lessons.Add(lesson);
             Console.WriteLine("Занятие успешно создано.");
         }
-
+      
         public static void CreateClassroom()
         {
             Console.WriteLine("Введите номер аудитории:");
@@ -96,12 +121,15 @@ namespace ConsoleApp
             Console.WriteLine("Введите ФИО ответственного сотрудника:");
             string employeeName = Console.ReadLine();
 
-            Employee employee = DB.employees.FirstOrDefault(e => e.FullName.ToLower() == employeeName.ToLower());
+            Employee employee = DB.employees.FirstOrDefault(e => $"{e.Name} {e.Surname} {e.Patronymic}".ToLower() == employeeName.ToLower());
             if (employee == null)
             {
                 Console.WriteLine("Сотрудник не найден. Задайте сотрудника.");
                 CreateEmployee();
+                employee = DB.employees.Last();
             }
+
+            employee = DB.employees.FirstOrDefault(e => $"{e.Name} {e.Surname} {e.Patronymic}".ToLower() == employeeName.ToLower());
 
             Console.WriteLine("Введите количество мест в аудитории:");
             int places = Convert.ToInt32(Console.ReadLine());
@@ -138,7 +166,7 @@ namespace ConsoleApp
         {
             Console.WriteLine("Введите название группы:");
             string groupName = Console.ReadLine();
-
+            
             Console.WriteLine("Введите короткое название группы:");
             string groupShortName = Console.ReadLine();
 
@@ -154,13 +182,16 @@ namespace ConsoleApp
                 CreateSpeciality();
             }
 
+            speciality = DB.specialties.FirstOrDefault(s => s.Name.ToLower() == specialityName.ToLower());
+
             Console.WriteLine("Введите ФИО куратора группы:");
             string employeeName = Console.ReadLine();
-            Employee employee = DB.employees.FirstOrDefault(e => e.FullName.ToLower() == employeeName.ToLower());
+            Employee employee = DB.employees.FirstOrDefault(e => $"{e.Name} {e.Surname} {e.Patronymic}".ToLower() == employeeName.ToLower());
             if (employee == null)
             {
                 Console.WriteLine("Куратор не найден. Задайте куратора группы.");
                 CreateEmployee();
+                employee = DB.employees.Last();
             }
 
             Console.WriteLine("Введите год создания группы (пустое значение означает текущий год):");
@@ -192,6 +223,8 @@ namespace ConsoleApp
                 CreateGroup();
             }
 
+            group = DB.groups.FirstOrDefault(g => g.Name.ToLower() == groupName.ToLower());
+
             Console.WriteLine("Введите дату рождения студента (пустое значение означает текущую дату):");
             string birth = Console.ReadLine();
 
@@ -211,21 +244,45 @@ namespace ConsoleApp
             Speciality speciality = new Speciality(name, abbreviation);
             DB.specialties.Add(speciality);
             Console.WriteLine("Специальность успешно создана.");
-        }
+        } 
 
         public static void CreatePair()
         {
             Console.WriteLine("Введите время начала пары (в формате чч:мм):");
             string timePairStart = Console.ReadLine();
 
+            while (!ValidateTimeFormat(timePairStart))
+            {
+                Console.WriteLine("Введенное время не соответствует формату чч:мм. Повторите ввод:");
+                timePairStart = Console.ReadLine();
+            }
+
             Console.WriteLine("Введите время окончания пары (в формате чч:мм):");
             string timePairEnd = Console.ReadLine();
+
+            while (!ValidateTimeFormat(timePairEnd))
+            {
+                Console.WriteLine("Введенное время не соответствует формату чч:мм. Повторите ввод:");
+                timePairEnd = Console.ReadLine();
+            }
 
             Console.WriteLine("Введите время начала перерыва (в формате чч:мм):");
             string timeBreakStart = Console.ReadLine();
 
+            while (!ValidateTimeFormat(timeBreakStart))
+            {
+                Console.WriteLine("Введенное время не соответствует формату чч:мм. Повторите ввод:");
+                timeBreakStart = Console.ReadLine();
+            }
+
             Console.WriteLine("Введите время окончания перерыва (в формате чч:мм):");
             string timeBreakEnd = Console.ReadLine();
+
+            while (!ValidateTimeFormat(timeBreakEnd))
+            {
+                Console.WriteLine("Введенное время не соответствует формату чч:мм. Повторите ввод:");
+                timeBreakEnd = Console.ReadLine();
+            }
 
             Console.WriteLine("Введите название смены:");
             string shiftName = Console.ReadLine();
@@ -236,11 +293,13 @@ namespace ConsoleApp
                 CreateShift();
             }
 
+            shift = DB.shifts.FirstOrDefault(s => s.Name.ToLower() == shiftName.ToLower());
+
             Pair pair = new Pair(timePairStart, timePairEnd, timeBreakStart, timeBreakEnd, shift);
             DB.pairs.Add(pair);
             Console.WriteLine("Пара успешно создана.");
         }
-
+        
         static public void CreateShift()
         {
             Console.WriteLine("Введите название смены:");
@@ -253,11 +312,11 @@ namespace ConsoleApp
 
         static public void CreateEmployee()
         {
-            Console.WriteLine("Введите имя сотрудника:");
-            string name = Console.ReadLine();
-
             Console.WriteLine("Введите фамилию сотрудника:");
             string surname = Console.ReadLine();
+
+            Console.WriteLine("Введите имя сотрудника:");
+            string name = Console.ReadLine();
 
             Console.WriteLine("Введите отчество сотрудника:");
             string patronymic = Console.ReadLine();
@@ -270,9 +329,10 @@ namespace ConsoleApp
             {
                 Console.WriteLine("Должность не найдена. Создайте специальность.");
                 CreateSpeciality();
+                jobTitle = DB.positions.FirstOrDefault(j => j.Name.ToLower() == jobTitleName.ToLower());
             }
 
-            Employee employee = new Employee(name, surname, patronymic, jobTitle);
+            Employee employee = new Employee(surname, name, patronymic, jobTitle);
             DB.employees.Add(employee);
             Console.WriteLine("Сотрудник успешно создан.");
         }
@@ -294,6 +354,8 @@ namespace ConsoleApp
                 CreateSubdivision();
             }
 
+            subdivision = DB.subdivisions.FirstOrDefault(s => s.Name.ToLower() == subdivisionName.ToLower());
+
             JobTitle jobTitle = new JobTitle(name, salary, subdivision);
             DB.positions.Add(jobTitle);
             Console.WriteLine("Должность успешно создана.");
@@ -306,13 +368,15 @@ namespace ConsoleApp
 
             Console.WriteLine("Введите фамилию, имя и отчество директора:");
             string directorFullName = Console.ReadLine();
-            Employee director = DB.employees.FirstOrDefault(e => e.FullName == directorFullName);
+            Employee director = DB.employees.FirstOrDefault(e => $"{e.Name} {e.Surname} {e.Patronymic}" == directorFullName);
             if (director == null)
             {
                 Console.WriteLine("Директор не найден. Создайте его.");
                 CreateEmployee();
+                director = DB.employees.Last();
             }
 
+            
             Console.WriteLine("Введите название организации:");
             string organizationName = Console.ReadLine();
             Organization organization = DB.organizations.FirstOrDefault(o => o.Name.ToLower() == organizationName.ToLower());
@@ -321,6 +385,8 @@ namespace ConsoleApp
                 Console.WriteLine("Организация не найдена. Создайте ее");
                 CreateOrganization();
             }
+
+            organization = DB.organizations.FirstOrDefault(o => o.Name.ToLower() == organizationName.ToLower());
 
             Subdivision subdivision = new Subdivision(name, director, organization);
             DB.subdivisions.Add(subdivision);
@@ -340,11 +406,12 @@ namespace ConsoleApp
 
             Console.WriteLine("Введите фамилию, имя и отчество руководителя организации:");
             string supervisorFullName = Console.ReadLine();
-            Employee supervisor = DB.employees.FirstOrDefault(e => e.FullName == supervisorFullName);
+            Employee supervisor = DB.employees.FirstOrDefault(e => $"{e.Surname} {e.Name} {e.Patronymic}" == supervisorFullName);
             if (supervisor == null)
             {
                 Console.WriteLine("Руководитель не найден. Задайте руководителя.");
                 CreateEmployee();
+                supervisor = DB.employees.Last();
             }
 
             Organization organization = new Organization(name, legalAddress, actualAddress, supervisor);
@@ -362,13 +429,14 @@ namespace ConsoleApp
 
             Console.WriteLine("Введите фамилию, имя и отчество коменданта корпуса:");
             string commandantFullName = Console.ReadLine();
-            Employee commandant = DB.employees.FirstOrDefault(e => e.FullName == commandantFullName);
+            Employee commandant = DB.employees.FirstOrDefault(e => $"{e.Name} {e.Surname} {e.Patronymic}" == commandantFullName);
             if (commandant == null)
             {
                 Console.WriteLine("Комендант не найден. Создайте его");
                 CreateEmployee();
+                commandant = DB.employees.Last();
             }
-
+           
             Console.WriteLine("Введите название организации, которой принадлежит корпус:");
             string organizationName = Console.ReadLine();
             Organization organization = DB.organizations.FirstOrDefault(o => o.Name.ToLower() == organizationName.ToLower());
@@ -377,6 +445,8 @@ namespace ConsoleApp
                 Console.WriteLine("Организация не найдена. Создайте ее");
                 CreateOrganization();
             }
+
+            organization = DB.organizations.FirstOrDefault(o => o.Name.ToLower() == organizationName.ToLower());
 
             Body body = new Body(name, address, commandant, organization);
             DB.bodies.Add(body);
@@ -391,6 +461,13 @@ namespace ConsoleApp
             DB.TypesOfActivity.Add(activity);
 
             Console.WriteLine("Вид деятельности успешно создан.");
-        } /// тут какая-то ШВАЙНЦ СОБАКА
+        } 
+
+         private static bool ValidateTimeFormat(string time)
+         {
+            string pattern = @"^(2[0-3]|[01][0-9]):[0-5][0-9]$";
+            return Regex.IsMatch(time, pattern);
+         }
+
     }
 }

@@ -27,7 +27,7 @@ namespace ClassLibrary
             get { return name; }
         }
 
-        public Employee Employe => director;
+        public Employee Employee => director;
 
         public Organization Organization => organization;
     }

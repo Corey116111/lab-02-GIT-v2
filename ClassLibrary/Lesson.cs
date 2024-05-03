@@ -32,7 +32,7 @@ namespace ClassLibrary
 
         public DateTime DateHeld => dateHeld;
         public Discipline Discipline => discipline;
-        public Employee Employe => employee;
+        public Employee Employee => employee;
         public Classroom Classroom => classroom;
         public Group Group => group;
         public Pair Pair => pair;

@@ -15,26 +15,22 @@ namespace ClassLibrary
     /// </summary>
     public class Employee
     {
-        private readonly string Name;
-        private readonly string Surname;
-        private readonly string Patronymic;
+        private readonly string name;
+        private readonly string surname;
+        private readonly string patronymic;
         private readonly JobTitle jobtitle;
 
-        public Employee(string Name, string Surname, string Patronymic, JobTitle jobTitle)
+        public Employee(string name, string surname, string patronymic, JobTitle jobTitle)
         {
-            this.Name = Name;
-            this.Surname = Surname;
-            this.Patronymic = Patronymic;
+            this.name = name;
+            this.surname = surname;
+            this.patronymic = patronymic;
             this.jobtitle = jobTitle;
         }
-
-        public string Names { get { return Name; } }
-        public string Surnames { get { return Surname; } }
-
-        public string Patronymics { get { return Patronymic; } }
+        public string Name { get { return name; } }
+        public string Surname { get { return surname; } }
+        public string Patronymic { get { return patronymic; } }
 
         public JobTitle JobTitle => jobtitle;
-
-        public string FullName => $"{Surname} {Name} {Patronymic}";
     }
 }

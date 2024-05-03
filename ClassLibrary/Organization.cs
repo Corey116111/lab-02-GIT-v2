@@ -21,7 +21,7 @@ namespace ClassLibrary
             this.actualAdress = actualAdress;
             this.employee = employee;
         }
-
+        
         public string Name { get { return name; } }
         public string LegalAdress { get { return legalAdress; } }
         public string ActualAdress { get { return actualAdress; } }
