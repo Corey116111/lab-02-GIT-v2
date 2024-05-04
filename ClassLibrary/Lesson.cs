@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ClassLibrary
 {
-    internal class Lesson
+    public class Lesson
     {
         private readonly DateTime dateHeld;
         private readonly Discipline discipline;
