@@ -46,7 +46,7 @@
     <Compile Include="Discipline.cs" />
     <Compile Include="Employee.cs" />
     <Compile Include="Group.cs" />
-    <Compile Include="Job title.cs" />
+    <Compile Include="JobTitle.cs" />
     <Compile Include="Lesson.cs" />
     <Compile Include="Organization.cs" />
     <Compile Include="Pair.cs" />
@@ -55,6 +55,7 @@
     <Compile Include="Speciality.cs" />
     <Compile Include="Student.cs" />
     <Compile Include="Subdivision.cs" />
+    <Compile Include="TypeOfActivity.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
