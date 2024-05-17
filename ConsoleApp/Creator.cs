@@ -161,11 +161,24 @@ namespace ConsoleApp
         {
             return null;
         }
-        
+
         public static Speciality CreateSpeciality()
         {
-            return null;
-        } 
+            Console.WriteLine("Введите название специальности:");
+            string name = Console.ReadLine();
+
+            Console.WriteLine("Введите сокращенное название специальности:");
+            string abbreviation = Console.ReadLine();
+
+            Speciality speciality = DB.specialties.FirstOrDefault();
+            if (speciality == null)
+            {
+                speciality = new Speciality(name, abbreviation);
+                DB.specialties.Add(speciality);
+                Console.WriteLine("Специальность успешно создана.");
+            }
+            return speciality;
+        }
 
         public static Pair CreatePair()
         {
@@ -174,7 +187,17 @@ namespace ConsoleApp
         
         static public Shift CreateShift()
         {
-            return null;
+            Console.WriteLine("Введите название смены:");
+            string name = Console.ReadLine();
+            Shift shift = new Shift(name);
+            if (shift == null)
+            {
+                DB.shifts.Add(shift);
+                shift = new Shift(name);
+                Console.WriteLine("Смена успешно создана.");
+            }
+
+            return shift;
         }
 
         static public Employee CreateEmployee()
