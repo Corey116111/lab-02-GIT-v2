@@ -31,13 +31,20 @@ namespace ConsoleApp
         public static void PrintClassroom(Classroom classroom)
         {
             Console.WriteLine("Аудитория:");
-            Console.WriteLine($"Номер: {classroom.Number}");
-            Console.WriteLine($"Ответственный сотрудник: {classroom.Employee.Name} {classroom.Employee.Surname} {classroom.Employee.Patronymic}");
+            Console.WriteLine($"Название: {classroom.Name}");
+            PrintEmployee(classroom.Employee);
             Console.WriteLine($"Количество мест: {classroom.Places}");
             Console.WriteLine($"Количество окон: {classroom.Windows}");
-            Console.WriteLine($"Оборудование: {string.Join<Equipment>(", ", classroom.Equipment)}");
+            foreach(Equipment equipment in classroom.Equipment)
+            {
+                PrintEquipment(equipment);
+            }
         }
 
+        public static void PrintEquipment(Equipment equipment)//Заглушка. Отсутствующий вариант
+        {
+            return;
+        }
         public static void PrintGroup(Group group)
         {
             Console.WriteLine("Группа:");

@@ -62,7 +62,53 @@ namespace ConsoleApp
       
         public static Classroom CreateClassroom()
         {
-            return null;
+            Console.WriteLine("Введите название аудитории:");
+            string name = Console.ReadLine();
+
+            Employee employee = CreateEmployee();
+
+            Console.WriteLine("Введите количество посадочных мест:");
+            bool f1 = int.TryParse(Console.ReadLine(), out int countPlaces);
+            while (countPlaces < 0 || !f1)
+            {
+                Console.WriteLine("Некорректный ввод");
+                Console.WriteLine("Введите количество посадочных мест:");
+                f1 = int.TryParse(Console.ReadLine(), out countPlaces);
+            }
+
+            Console.WriteLine("Введите количество окон:");
+            bool f2 = int.TryParse(Console.ReadLine(), out int countWindows);
+            while (countWindows < 0 || !f2)
+            {
+                Console.WriteLine("Некорректный ввод");
+                Console.WriteLine("Введите количество окон:");
+                f2 = int.TryParse(Console.ReadLine(), out countWindows);
+            }
+
+            Console.WriteLine("Введите количество оборудования:");
+            bool f3 = int.TryParse(Console.ReadLine(), out int countEquipment);
+            while (countEquipment < 0 || !f3)
+            {
+                Console.WriteLine("Некорректный ввод");
+                Console.WriteLine("Введите количество оборудования:");
+                f3 = int.TryParse(Console.ReadLine(), out countEquipment);
+            }
+            Equipment[] equipment = new Equipment[countEquipment];
+            for(int i = 0; i < countEquipment; i++)
+            {
+                equipment[i] = CreateEquipment();
+            }
+
+            Classroom classroom = DB.classrooms.FirstOrDefault(l => name == l.Name && employee == l.Employee && countPlaces == l.Places && countWindows == l.Windows && equipment == l.Equipment);
+
+            if (classroom == null)
+            {
+                classroom = new Classroom(name, employee, countPlaces, countWindows, equipment);
+                DB.classrooms.Add(classroom);
+                Console.WriteLine("Аудитория успешно создана.");
+            }
+
+            return classroom;
         }
         
         public static Discipline CreateDiscipline()
@@ -227,9 +273,14 @@ namespace ConsoleApp
         static public TypeOfActivity CreateTypeOfActivity()
         {
             return null;
-        } 
+        }
 
-         private static bool ValidateTimeFormat(string time)
+        public static Equipment CreateEquipment()//Заглушка. Отсутствующий вариант
+        {
+            return null;
+        }
+
+        private static bool ValidateTimeFormat(string time)
          {
             string pattern = @"^(2[0-3]|[01][0-9]):[0-5][0-9]$";
             return Regex.IsMatch(time, pattern);
