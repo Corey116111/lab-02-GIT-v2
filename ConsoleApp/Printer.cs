@@ -45,8 +45,8 @@ namespace ConsoleApp
             Console.WriteLine($"Краткое название: {group.Shortname}");
             Console.WriteLine($"Количество студентов: {group.Quantity}");
             Console.WriteLine($"Год создания: {group.Year}");
-            Console.WriteLine($"Специальность: {group.Speciality.Name}");
-            Console.WriteLine($"Классный руководитель: {group.Classroomteatcher.Name} {group.Classroomteatcher.Surname} {group.Classroomteatcher.Patronymic}");
+            PrintSpeciality(group.Speciality);
+            PrintEmployee(group.Classroomteatcher);
         }
 
         public static void PrintStudent(Student student)
