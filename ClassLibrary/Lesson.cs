@@ -6,9 +6,12 @@ using System.Threading.Tasks;
 
 namespace ClassLibrary
 {
+<<<<<<< HEAD
     /// <summary>
     /// https://docs.google.com/document/d/1KZXfKJussGflgWnWylGbFrwmdcn3liYKIsgmtxB1mN0/edit 1 вариант
     /// </summary>
+=======
+>>>>>>> dev
     public class Lesson
     {
         private readonly DateTime dateHeld;
