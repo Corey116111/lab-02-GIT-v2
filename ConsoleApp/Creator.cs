@@ -116,7 +116,26 @@ namespace ConsoleApp
 
         static public Body CreateBody()
         {
-            return null;
+            Console.WriteLine("Введите название корпуса:");
+            string name = Console.ReadLine();
+
+            Console.WriteLine("Введите адрес корпуса:");
+            string address = Console.ReadLine();
+
+            Employee employee = CreateEmployee();
+
+            Organization organization = CreateOrganization();
+
+            Body body = DB.bodies.FirstOrDefault(l => employee == l.Employe && organization == l.Organization);
+
+            if (body == null)
+            {
+                body = new Body(name, address, employee, organization);
+                DB.bodies.Add(body);
+                Console.WriteLine("Корпус успешно создан.");
+            }
+
+            return body;
         }
         static public TypeOfActivity CreateTypeOfActivity()
         {

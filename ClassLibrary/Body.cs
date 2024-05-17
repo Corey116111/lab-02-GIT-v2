@@ -9,20 +9,20 @@ namespace ClassLibrary
     {
         private readonly string name;
         private readonly string address;
-        private readonly Student student;
+        private readonly Employee employee;
         private readonly Organization organization;
-        public Body(string name, string address,  Student student, Organization organization)
+
+        public Body(string name, string address, Employee employee, Organization organization)
         {
             this.name = name;
             this.address = address;
-            this.student = student;
-            this.organization = organization;
+            this.employee = employee; 
+            this.organization = organization; 
         }
+
         public string Name { get { return name; } }
         public string Address { get { return address; } }
-        
-        public Student Student => student;
-
-        public Organization Organization => organization;  
+        public Employee Employe => employee;
+        public Organization Organization => organization;
     }
 }
