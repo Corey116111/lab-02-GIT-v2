@@ -115,7 +115,7 @@ namespace ConsoleApp
             return null;
         }
 
-        public static ClassLibrary.Speciality CreateSpeciality()
+        public static Speciality CreateSpeciality()
         {
             Console.WriteLine("Введите название специальности:");
             string name = Console.ReadLine();
@@ -123,9 +123,13 @@ namespace ConsoleApp
             Console.WriteLine("Введите сокращенное название специальности:");
             string abbreviation = Console.ReadLine();
 
-            Speciality speciality = new Speciality(name, abbreviation);
-            DB.specialties.Add(speciality);
-            Console.WriteLine("Специальность успешно создана.");
+            Speciality speciality = DB.specialties.FirstOrDefault();
+            if (speciality == null)
+            {
+                speciality = new Speciality(name, abbreviation);
+                DB.specialties.Add(speciality);
+                Console.WriteLine("Специальность успешно создана.");
+            }
             return speciality;
         }
 
