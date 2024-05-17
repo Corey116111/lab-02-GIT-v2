@@ -127,7 +127,14 @@ namespace ConsoleApp
         
         static public Shift CreateShift()
         {
-            return null;
+            Console.WriteLine("Введите название смены:");
+            string name = Console.ReadLine();
+
+            Shift shift = new Shift(name);
+            DB.shifts.Add(shift);
+            Console.WriteLine("Смена успешно создана.");
+
+            return shift;
         }
 
         static public Employee CreateEmployee()

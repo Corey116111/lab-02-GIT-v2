@@ -17,7 +17,7 @@ namespace ClassLibrary
     {
         private string name;
 
-        public Shift(string name, string date)
+        public Shift(string name)
         {
             this.name = name;
         }
@@ -27,9 +27,6 @@ namespace ClassLibrary
             get { return name; }
         }
 
-        public string Date
-        {
-            get { return date; }
-        }
+     
     }
 }
