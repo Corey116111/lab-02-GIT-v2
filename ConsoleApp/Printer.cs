@@ -13,15 +13,15 @@ namespace ConsoleApp
         {
             Console.WriteLine("Урок:");
             Console.WriteLine($"Дата: {lesson.DateHeld}");
-            Console.WriteLine($"Дисциплина: {lesson.Discipline.Name}");
-            Console.WriteLine($"Преподаватель: {lesson.Employee.Name} {lesson.Employee.Surname} {lesson.Employee.Patronymic}");
-            Console.WriteLine($"Аудитория: {lesson.Classroom.Number}");
-            Console.WriteLine($"Группа: {lesson.Group.Name}");
-            Console.WriteLine($"Пара: {lesson.Pair.Time_pair_start}-{lesson.Pair.Time_pair_end}");
-            Console.WriteLine($"Вид деятельности: {lesson.TypeOfActivity.Letter}");
+            PrintDiscipline(lesson.Discipline);
+            PrintEmployee(lesson.Employe);
+            PrintClassroom(lesson.Classroom);
+            PrintGroup(lesson.Group);
+            PrintPair(lesson.Pair);
+            PrintTypeOfActivity(lesson.TypeOfActivity);
         }
 
-        public static void PrintDiscipline(Discipline discipline) // good
+        public static void PrintDiscipline(Discipline discipline) 
         {
             Console.WriteLine("Дисциплина:");
             Console.WriteLine($"Название: {discipline.Name}");
