@@ -14,7 +14,7 @@ namespace ClassLibrary
 
     public class Shift
     {
-        private string name;
+        private readonly string name;
 
         public Shift(string name)
         {
@@ -24,8 +24,6 @@ namespace ClassLibrary
         public string Name
         {
             get { return name; }
-        }
-
-     
+        }  
     }
 }

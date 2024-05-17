@@ -21,7 +21,7 @@ namespace ConsoleApp
             PrintTypeOfActivity(lesson.TypeOfActivity);
         }
 
-        public static void PrintDiscipline(Discipline discipline) 
+        public static void PrintDiscipline(Discipline discipline)  // тимлид делать за людей не будет
         {
             Console.WriteLine("Дисциплина:");
             Console.WriteLine($"Название: {discipline.Name}");
@@ -43,7 +43,7 @@ namespace ConsoleApp
 
         public static void PrintEquipment(Equipment equipment)//Заглушка. Отсутствующий вариант
         {
-            return;
+            Console.WriteLine(equipment);
         }
         public static void PrintGroup(Group group)
         {
@@ -56,7 +56,7 @@ namespace ConsoleApp
             PrintEmployee(group.Classroomteatcher);
         }
 
-        public static void PrintStudent(Student student)
+        public static void PrintStudent(Student student) // тимлид делать за людей не будет
         {
             Console.WriteLine("Студент:");
             Console.WriteLine($"Фамилия: {student.Surname}");
@@ -73,23 +73,23 @@ namespace ConsoleApp
             Console.WriteLine($"Аббревиатура: {speciality.Abbreviation}");
         }
 
-        public static void PrintPair(Pair pair) // good
+        public static void PrintPair(Pair pair)  // тимлид делать за людей не будет
         {
             Console.WriteLine("Пара:");
             Console.WriteLine($"Начало: {pair.Time_pair_start}");
             Console.WriteLine($"Конец: {pair.Time_pair_end}");
             Console.WriteLine($"Начало перерыва: {pair.Time_break_start}");
             Console.WriteLine($"Конец перерыва: {pair.Time_break_end}");
-            Console.WriteLine($"Смена: {pair.Shift.Name}");
+            Console.WriteLine($"Смена: {pair.Shift}");
         }
 
-        public static void PrintShift(Shift shift) // good
+        public static void PrintShift(Shift shift) 
         {
             Console.WriteLine("Смена:");
             Console.WriteLine($"Название: {shift.Name}");
         }
         
-        public static void PrintEmployee(Employee employee)
+        public static void PrintEmployee(Employee employee) // тимлид делать за людей не будет
         {
             Console.WriteLine("Сотрудник:");
             Console.WriteLine($"Имя: {employee.Name}");
@@ -98,7 +98,7 @@ namespace ConsoleApp
             Console.WriteLine($"Должность: {employee.JobTitle.Name}");
         }
 
-        public static void PrintJobTitle(JobTitle jobTitle) // good
+        public static void PrintJobTitle(JobTitle jobTitle) 
         {
             Console.WriteLine("Должность:");
             Console.WriteLine($"Название: {jobTitle.Name}");
@@ -114,8 +114,8 @@ namespace ConsoleApp
             PrintOrganization(subdivision.Organization);
         }
 
-        public static void PrintOrganization(Organization organization)
-        {
+        public static void PrintOrganization(Organization organization) // тимлид делать за людей не будет
+        { 
             Console.WriteLine("Организация:");
             Console.WriteLine($"Название: {organization.Name}");
             Console.WriteLine($"Юридический адрес: {organization.LegalAdress}");
@@ -135,10 +135,10 @@ namespace ConsoleApp
             PrintOrganization(body.Organization);
         }
         
-        public static void PrintTypeOfActivity(TypeOfActivity typeofactivity) // good
+        public static void PrintTypeOfActivity(TypeOfActivity typeofactivity) 
         {
             Console.WriteLine("Вид деятельности:");
-            Console.WriteLine($"Буква: {typeofactivity.Letter}");
+            Console.WriteLine($"Буква: {typeofactivity.Name}");
         }
         
         public static void PrintObjectsList(int choice)

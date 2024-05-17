@@ -111,7 +111,7 @@ namespace ConsoleApp
             return classroom;
         }
         
-        public static Discipline CreateDiscipline()
+        public static Discipline CreateDiscipline() // тимлид делать за людей не будет
         {
             return null;
         }
@@ -157,7 +157,7 @@ namespace ConsoleApp
             return group;
         }
 
-        public static Student CreateStudent()
+        public static Student CreateStudent() // тимлид делать за людей не будет
         {
             return null;
         }
@@ -180,7 +180,7 @@ namespace ConsoleApp
             return speciality;
         }
 
-        public static Pair CreatePair()
+        public static Pair CreatePair() // тимлид делать за людей не будет
         {
             return null;
         }
@@ -200,12 +200,12 @@ namespace ConsoleApp
             return shift;
         }
 
-        static public Employee CreateEmployee()
+        static public Employee CreateEmployee() // тимлид делать за людей не будет
         {
             return null;
         }
 
-        static public JobTitle CreateJobTitle() // на будущее
+        static public JobTitle CreateJobTitle() 
         {
             Console.WriteLine("Введите название должности:");
             string name = Console.ReadLine();
@@ -242,8 +242,8 @@ namespace ConsoleApp
             return subdivision;
         }
 
-        static public Organization CreateOrganization()
-        {
+        static public Organization CreateOrganization() // тимлид делать за людей не будет
+        { 
             return null;
         }
 
@@ -272,7 +272,19 @@ namespace ConsoleApp
         }
         static public TypeOfActivity CreateTypeOfActivity()
         {
-            return null;
+            Console.WriteLine("Введите название вида занятия:");
+            string name = Console.ReadLine().ToUpper();
+
+            TypeOfActivity typeOfActivity = DB.TypesOfActivity.FirstOrDefault();
+
+            if (typeOfActivity == null)
+            {
+                typeOfActivity = new TypeOfActivity(name);
+                DB.TypesOfActivity.Add(typeOfActivity);
+                Console.WriteLine("Вид занятия успешно создан.");
+            }
+
+            return typeOfActivity;
         }
 
         public static Equipment CreateEquipment()//Заглушка. Отсутствующий вариант

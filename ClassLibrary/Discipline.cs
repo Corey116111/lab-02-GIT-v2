@@ -6,17 +6,15 @@ using System.Threading.Tasks;
 
 namespace ClassLibrary
 {
-<<<<<<< HEAD
     /// <summary>
     /// https://docs.google.com/document/d/1qCEMkbMRvvHP361IFDeWgSpHfVRUp6BV67nrsjl3fSw/edit 3 вариант
     /// </summary>
-=======
->>>>>>> dev
+
     public class Discipline
     {
-        private string name;
-        private string shortName;
-        private DateTime dateHeld;
+        private readonly string name;
+        private readonly string shortName;
+        private readonly DateTime dateHeld;
 
         public Discipline(string name, string shortName)
         {
@@ -34,6 +32,11 @@ namespace ClassLibrary
         public string Name
         {
             get { return name; }
+        }
+
+        public string ShortName
+        {
+            get { return shortName; }
         }
     }
 }

@@ -2,13 +2,12 @@
 using System.Text;
 using System.Threading.Tasks;
 namespace ClassLibrary
-<<<<<<< HEAD
+
 {   /// <summary>
     /// https://docs.google.com/document/d/13_TXjBoKn0TzKMcWP9A6jX2vyQEgcxBc4vY1CfJn9ps/edit?pli=1 13 вариант
     /// </summary>
-=======
-{
->>>>>>> dev
+
+
     public class Body
     {
         private readonly string name;

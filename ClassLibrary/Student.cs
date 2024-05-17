@@ -6,12 +6,10 @@ using System.Threading.Tasks;
 
 namespace ClassLibrary
 {
-<<<<<<< HEAD
     /// <summary>
     /// https://docs.google.com/document/d/1FrtPd2tz85cDVhZCYXqL0wrByPjNbd6kUbjXzOzfLPc/edit 5 вариант
     /// </summary>
-=======
->>>>>>> dev
+
     public class Student
     {
         private readonly string surname;

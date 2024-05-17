@@ -12,9 +12,9 @@ namespace ClassLibrary
     /// </summary>
     public class JobTitle
     {
-        private string name;
-        private int salary;
-        private Subdivision subdivision;
+        private readonly string name;
+        private readonly int salary;
+        private readonly Subdivision subdivision;
 
 
         public JobTitle(string name, int salary, Subdivision subdivision)
