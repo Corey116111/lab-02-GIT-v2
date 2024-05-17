@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -137,7 +138,22 @@ namespace ConsoleApp
 
         static public JobTitle CreateJobTitle() // на будущее
         {
-            return null;
+            Console.WriteLine("Введите название должности:");
+            string name = Console.ReadLine();
+
+            Console.WriteLine("Введите зарплату должности:");
+            int salary = Convert.ToInt32(Console.ReadLine());
+
+            Subdivision subdivision = CreateSubdivision();
+            JobTitle jobTitle = DB.positions.FirstOrDefault(l => subdivision == l.Subdivision);
+            if (jobTitle == null)
+            {
+                jobTitle = new JobTitle(name, salary, subdivision);
+                DB.positions.Add(jobTitle);
+                Console.WriteLine("Должность успешно создана.");
+            }
+            return jobTitle;
+
         }
 
         static public Subdivision CreateSubdivision()

@@ -96,7 +96,7 @@ namespace ConsoleApp
             Console.WriteLine("Должность:");
             Console.WriteLine($"Название: {jobTitle.Name}");
             Console.WriteLine($"Зарплата: {jobTitle.Salary}");
-            Console.WriteLine($"Подразделение: {jobTitle.Subdivision.Name}");
+            PrintSubdivision(jobTitle.Subdivision);
         }
 
         public static void PrintSubdivision(Subdivision subdivision)
