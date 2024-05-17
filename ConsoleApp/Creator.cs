@@ -142,7 +142,20 @@ namespace ConsoleApp
 
         static public Subdivision CreateSubdivision()
         {
-            return null;
+            Employee employee = CreateEmployee();
+            Organization organization = CreateOrganization();
+            Console.WriteLine("Введите имя подразделение");
+            string имя = Console.ReadLine();
+            Subdivision subdivision = DB.subdivisions.FirstOrDefault(el => el.Employee == employee && el.Organization == organization && el.Name == имя);
+
+            if (subdivision == null)
+            {
+                subdivision = new Subdivision(имя, employee, organization);
+                DB.subdivisions.Add(subdivision);
+                Console.WriteLine("Занятие успешно создано.");
+            }
+
+            return subdivision;
         }
 
         static public Organization CreateOrganization()
