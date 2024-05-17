@@ -114,11 +114,20 @@ namespace ConsoleApp
         {
             return null;
         }
-        
-        public static Speciality CreateSpeciality()
+
+        public static ClassLibrary.Speciality CreateSpeciality()
         {
-            return null;
-        } 
+            Console.WriteLine("Введите название специальности:");
+            string name = Console.ReadLine();
+
+            Console.WriteLine("Введите сокращенное название специальности:");
+            string abbreviation = Console.ReadLine();
+
+            Speciality speciality = new Speciality(name, abbreviation);
+            DB.specialties.Add(speciality);
+            Console.WriteLine("Специальность успешно создана.");
+            return speciality;
+        }
 
         public static Pair CreatePair()
         {
