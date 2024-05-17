@@ -6,9 +6,12 @@ using System.Threading.Tasks;
 
 namespace ClassLibrary
 {
+<<<<<<< HEAD
     /// <summary>
     /// https://docs.google.com/document/d/1JN0SjEeelhtpKzoJqkva5JRePiMCLzyYPcI0Je8m7qU/edit 12 вариант
     /// </summary>
+=======
+>>>>>>> dev
     public class Organization
     {
         private string name;

@@ -55,6 +55,7 @@
     <Compile Include="Speciality.cs" />
     <Compile Include="Student.cs" />
     <Compile Include="Subdivision.cs" />
+    <Compile Include="TypeOfActivity.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

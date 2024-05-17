@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace ClassLibrary
 {
+<<<<<<< HEAD
     /// <summary>
     /// https://docs.google.com/document/d/1yBWzXRuxmOQiPQs9TyNx8tNgq6nWF42Sjn-mgT_-5nY/edit
     /// 10 variant
@@ -29,5 +30,9 @@ namespace ClassLibrary
             get { return name;  }
         }
 
+=======
+    public class JobTitle
+    {
+>>>>>>> dev
     }
 }

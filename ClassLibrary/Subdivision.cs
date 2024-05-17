@@ -6,9 +6,12 @@ using System.Threading.Tasks;
 
 namespace ClassLibrary
 {
+<<<<<<< HEAD
     /// <summary>
     /// https://docs.google.com/document/d/1XUtn0QpVUQmailvo24lJ3XjJT5NP0SPjzi_vPOF1N9A/edit 11 вариант
     /// </summary>
+=======
+>>>>>>> dev
     public class Subdivision
     {
             private string name;

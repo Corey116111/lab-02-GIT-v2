@@ -6,9 +6,12 @@ using System.Threading.Tasks;
 
 namespace ClassLibrary
 {
+<<<<<<< HEAD
     /// <summary>
     /// https://docs.google.com/document/d/10XwtkjNB6-lRehWP_7qbgWC1nn_oIpa28ezyPXX3B28/edit 2 вариант
     /// </summary>
+=======
+>>>>>>> dev
     public class Classroom
     {
         private string name;
