@@ -52,8 +52,8 @@ namespace ConsoleApp
             Console.WriteLine($"Краткое название: {group.Shortname}");
             Console.WriteLine($"Количество студентов: {group.Quantity}");
             Console.WriteLine($"Год создания: {group.Year}");
-            Console.WriteLine($"Специальность: {group.Speciality.Name}");
-            Console.WriteLine($"Классный руководитель: {group.Classroomteatcher.Name} {group.Classroomteatcher.Surname} {group.Classroomteatcher.Patronymic}");
+            PrintSpeciality(group.Speciality);
+            PrintEmployee(group.Classroomteatcher);
         }
 
         public static void PrintStudent(Student student)
@@ -103,15 +103,15 @@ namespace ConsoleApp
             Console.WriteLine("Должность:");
             Console.WriteLine($"Название: {jobTitle.Name}");
             Console.WriteLine($"Зарплата: {jobTitle.Salary}");
-            Console.WriteLine($"Подразделение: {jobTitle.Subdivision.Name}");
+            PrintSubdivision(jobTitle.Subdivision);
         }
 
         public static void PrintSubdivision(Subdivision subdivision)
         {
             Console.WriteLine("Подразделение:");
             Console.WriteLine($"Название: {subdivision.Name}");
-            Console.WriteLine($"Руководитель: {subdivision.Employee.Name} {subdivision.Employee.Surname} {subdivision.Employee.Patronymic}");
-            Console.WriteLine($"Организация: {subdivision.Organization.Name}");
+            PrintEmployee(subdivision.Employee);
+            PrintOrganization(subdivision.Organization);
         }
 
         public static void PrintOrganization(Organization organization)
@@ -131,15 +131,8 @@ namespace ConsoleApp
             Console.WriteLine("Корпус:");
             Console.WriteLine($"Название: {body.Name}");
             Console.WriteLine($"Адрес: {body.Address}");
-            if (body.Employee != null)
-            {
-                Console.WriteLine($"Ответственный сотрудник: {body.Employee.Name} {body.Employee.Surname} {body.Employee.Patronymic}");
-            }
-            else
-            {
-                Console.WriteLine("Комендант не указан");
-            }
-            Console.WriteLine($"Организация: {body.Organization.Name}");
+            PrintEmployee(body.Employe);
+            PrintOrganization(body.Organization);
         }
         
         public static void PrintTypeOfActivity(TypeOfActivity typeofactivity) // good

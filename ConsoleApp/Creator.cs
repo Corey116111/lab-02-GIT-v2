@@ -118,7 +118,43 @@ namespace ConsoleApp
 
         public static ClassLibrary.Group CreateGroup()
         {
-            return null;
+            Console.WriteLine("Введите название группы");
+            string name = Console.ReadLine();
+
+            Console.WriteLine("Введите сокращение группы");
+            string shortname = Console.ReadLine();
+
+            Console.WriteLine("Введите численность группы");
+            int quantity = int.Parse(Console.ReadLine());
+
+            if(quantity <= 0) 
+            {
+                Console.WriteLine("Численность группы не может быть меньше нуля");
+                quantity = int.Parse(Console.ReadLine());
+            }
+
+            Console.WriteLine("Введите год поступления");
+            int year = int.Parse(Console.ReadLine());
+
+            if(year <= 0)
+            {
+                Console.WriteLine("Неверный год. Повторите ввод:");
+                year = int.Parse(Console.ReadLine());
+            }
+
+            Speciality speciality = CreateSpeciality();
+
+            Employee classroomteatcher = CreateEmployee();
+
+            ClassLibrary.Group group = DB.groups.FirstOrDefault(l => speciality == l.Speciality && classroomteatcher == l.Classroomteatcher);
+            if (group == null)
+            {
+                group = new ClassLibrary.Group(name, shortname, quantity, speciality, classroomteatcher, year);
+                DB.groups.Add(group);
+                Console.WriteLine("Группа успешно создана.");
+            }
+
+            return group;
         }
 
         public static Student CreateStudent()
@@ -148,12 +184,39 @@ namespace ConsoleApp
 
         static public JobTitle CreateJobTitle() // на будущее
         {
-            return null;
+            Console.WriteLine("Введите название должности:");
+            string name = Console.ReadLine();
+
+            Console.WriteLine("Введите зарплату должности:");
+            int salary = Convert.ToInt32(Console.ReadLine());
+
+            Subdivision subdivision = CreateSubdivision();
+            JobTitle jobTitle = DB.positions.FirstOrDefault(l => subdivision == l.Subdivision);
+            if (jobTitle == null)
+            {
+                jobTitle = new JobTitle(name, salary, subdivision);
+                DB.positions.Add(jobTitle);
+                Console.WriteLine("Должность успешно создана.");
+            }
+            return jobTitle;
+
         }
 
         static public Subdivision CreateSubdivision()
         {
-            return null;
+            Employee employee = CreateEmployee();
+            Organization organization = CreateOrganization();
+            Console.WriteLine("Введите имя подразделения");
+            string name = Console.ReadLine();
+            Subdivision subdivision = DB.subdivisions.FirstOrDefault(el => el.Employee == employee && el.Organization == organization);
+
+            if (subdivision == null)
+            {
+                subdivision = new Subdivision(name, employee, organization);
+                DB.subdivisions.Add(subdivision);
+                Console.WriteLine("подразделение успешно создано.");
+            }
+            return subdivision;
         }
 
         static public Organization CreateOrganization()
@@ -163,7 +226,26 @@ namespace ConsoleApp
 
         static public Body CreateBody()
         {
-            return null;
+            Console.WriteLine("Введите название корпуса:");
+            string name = Console.ReadLine();
+
+            Console.WriteLine("Введите адрес корпуса:");
+            string address = Console.ReadLine();
+
+            Employee employee = CreateEmployee();
+
+            Organization organization = CreateOrganization();
+
+            Body body = DB.bodies.FirstOrDefault(l => employee == l.Employe && organization == l.Organization);
+
+            if (body == null)
+            {
+                body = new Body(name, address, employee, organization);
+                DB.bodies.Add(body);
+                Console.WriteLine("Корпус успешно создан.");
+            }
+
+            return body;
         }
         static public TypeOfActivity CreateTypeOfActivity()
         {
