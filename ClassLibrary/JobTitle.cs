@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace ClassLibrary
 {
-<<<<<<< HEAD
     /// <summary>
     /// https://docs.google.com/document/d/1yBWzXRuxmOQiPQs9TyNx8tNgq6nWF42Sjn-mgT_-5nY/edit
     /// 10 variant
@@ -26,13 +25,18 @@ namespace ClassLibrary
         }
 
         public string Name
-    {
-            get { return name;  }
+        {
+            get { return name; }
+        }
+        public Subdivision Subdivision
+        {
+            get { return subdivision; }
+        }
+        public int Salary
+        {
+            get { return salary; }
         }
 
-=======
-    public class JobTitle
-    {
->>>>>>> dev
     }
+
 }
