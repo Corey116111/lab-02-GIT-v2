@@ -71,7 +71,43 @@ namespace ConsoleApp
 
         public static ClassLibrary.Group CreateGroup()
         {
-            return null;
+            Console.WriteLine("Введите название группы");
+            string name = Console.ReadLine();
+
+            Console.WriteLine("Введите сокращение группы");
+            string shortname = Console.ReadLine();
+
+            Console.WriteLine("Введите численность группы");
+            int quantity = int.Parse(Console.ReadLine());
+
+            if(quantity <= 0) 
+            {
+                Console.WriteLine("Численность группы не может быть меньше нуля");
+                quantity = int.Parse(Console.ReadLine());
+            }
+
+            Console.WriteLine("Введите год поступления");
+            int year = int.Parse(Console.ReadLine());
+
+            if(year <= 0)
+            {
+                Console.WriteLine("Неверный год. Повторите ввод:");
+                year = int.Parse(Console.ReadLine());
+            }
+
+            Speciality speciality = CreateSpeciality();
+
+            Employee classroomteatcher = CreateEmployee();
+
+            ClassLibrary.Group group = DB.groups.FirstOrDefault(l => speciality == l.Speciality && classroomteatcher == l.Classroomteatcher);
+            if (group == null)
+            {
+                group = new ClassLibrary.Group(name, shortname, quantity, speciality, classroomteatcher, year);
+                DB.groups.Add(group);
+                Console.WriteLine("Группа успешно создана.");
+            }
+
+            return group;
         }
 
         public static Student CreateStudent()
