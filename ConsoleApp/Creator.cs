@@ -140,7 +140,7 @@ namespace ConsoleApp
             return null;
         }
 
-        static public Subdivision CreateSubdivision()
+        static public void CreateSubdivision()
         {
             Employee employee = CreateEmployee();
             Organization organization = CreateOrganization();
@@ -152,10 +152,9 @@ namespace ConsoleApp
             {
                 subdivision = new Subdivision(имя, employee, organization);
                 DB.subdivisions.Add(subdivision);
-                Console.WriteLine("Занятие успешно создано.");
+                Console.WriteLine("подразделение успешно создано.");
             }
 
-            return subdivision;
         }
 
         static public Organization CreateOrganization()
