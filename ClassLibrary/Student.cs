@@ -14,13 +14,13 @@ namespace ClassLibrary
 >>>>>>> dev
     public class Student
     {
-        private string surname;
-        private string name;
-        private string patronymic;
-        private Group group;
-        private string birth;
-
-        public Student(string surname, string name, string patronymic, Group group, string birth)
+        private readonly string surname;
+        private readonly string name;
+        private readonly string patronymic;
+        private readonly Group group;
+        private readonly DateTime birth;
+      
+        public Student(string surname, string name, string patronymic, Group group, DateTime birth)
         {
             this.surname = surname;
             this.name = name;
@@ -32,8 +32,29 @@ namespace ClassLibrary
             }
             else
             {
-                this.birth = DateTime.Today.ToString();
+                this.birth = DateTime.Today;
             }
+        }
+
+        public string Surname
+        {
+            get { return surname; }
+        }
+        public string Name
+        {
+            get { return name; }
+        }
+        public string Patronymic
+        {
+            get { return patronymic; }
+        }
+        public Group Group
+        {
+            get { return group; }
+        }
+         public DateTime Birth
+        {
+            get { return birth; }
         }
 
         public string FullName

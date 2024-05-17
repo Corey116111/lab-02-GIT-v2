@@ -124,15 +124,8 @@ namespace ConsoleApp
             Console.WriteLine("Корпус:");
             Console.WriteLine($"Название: {body.Name}");
             Console.WriteLine($"Адрес: {body.Address}");
-            if (body.Employee != null)
-            {
-                Console.WriteLine($"Ответственный сотрудник: {body.Employee.Name} {body.Employee.Surname} {body.Employee.Patronymic}");
-            }
-            else
-            {
-                Console.WriteLine("Комендант не указан");
-            }
-            Console.WriteLine($"Организация: {body.Organization.Name}");
+            PrintEmployee(body.Employe);
+            PrintOrganization(body.Organization);
         }
         
         public static void PrintTypeOfActivity(TypeOfActivity typeofactivity) // good

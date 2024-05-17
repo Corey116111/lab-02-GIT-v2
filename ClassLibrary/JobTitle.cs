@@ -26,7 +26,7 @@ namespace ClassLibrary
         }
 
         public string Name
-        {
+    {
             get { return name;  }
         }
 
