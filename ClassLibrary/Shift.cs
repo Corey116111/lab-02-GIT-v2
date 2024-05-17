@@ -7,12 +7,11 @@ using System.Xml.Linq;
 
 namespace ClassLibrary
 {
-<<<<<<< HEAD
+
     /// <summary>
     /// https://docs.google.com/document/d/1QSQdwb3s6IOh4avDr_-vpiYnII_80yUAVL3H_JkLNXQ/edit 8 вариант
     /// </summary>
-=======
->>>>>>> dev
+
     public class Shift
     {
         private string name;
