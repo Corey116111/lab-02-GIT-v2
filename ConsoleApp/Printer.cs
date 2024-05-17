@@ -103,8 +103,8 @@ namespace ConsoleApp
         {
             Console.WriteLine("Подразделение:");
             Console.WriteLine($"Название: {subdivision.Name}");
-            Console.WriteLine($"Руководитель: {subdivision.Employee.Name} {subdivision.Employee.Surname} {subdivision.Employee.Patronymic}");
-            Console.WriteLine($"Организация: {subdivision.Organization.Name}");
+            PrintEmployee(subdivision.Employee);
+            PrintOrganization(subdivision.Organization);
         }
 
         public static void PrintOrganization(Organization organization)
