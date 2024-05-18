@@ -129,11 +129,11 @@ namespace ConsoleApp
         {
             Console.WriteLine("Введите название смены:");
             string name = Console.ReadLine();
-            Shift shift = new Shift(name);
+            Shift shift = DB.shifts.FirstOrDefault();
             if (shift == null)
             {
-                DB.shifts.Add(shift);
                 shift = new Shift(name);
+                DB.shifts.Add(shift);
                 Console.WriteLine("Смена успешно создана.");
             }
 
