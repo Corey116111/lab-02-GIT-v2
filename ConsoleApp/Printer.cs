@@ -32,7 +32,7 @@ namespace ConsoleApp
         {
             Console.WriteLine("Аудитория:");
             Console.WriteLine($"Название: {classroom.Name}");
-            PrintEmployee(classroom.Employee);
+            PrintEmployee(classroom.Responsible);
             Console.WriteLine($"Количество мест: {classroom.Places}");
             Console.WriteLine($"Количество окон: {classroom.Windows}");
             foreach(Equipment equipment in classroom.Equipment)
