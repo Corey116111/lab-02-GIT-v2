@@ -6,23 +6,30 @@ using System.Threading.Tasks;
 
 namespace ClassLibrary
 {
-    internal class Discipline
+    public class Discipline
     {
-        private string name;
-        private string shortName;
-        private DateTime dateHeld;
+        private readonly string name;
+        private readonly string shortName;
 
         public Discipline(string name, string shortName)
         {
             this.name = name;
-            this.shortName = shortName;
-            this.dateHeld = DateTime.Now;
+            this.shortName = shortName;          
         }
         public Discipline(string name, string shortName, DateTime dateHeld)
         {
             this.name = name;
             this.shortName = shortName;
-            this.dateHeld = dateHeld;
+        }
+
+        public string Name
+        {
+            get { return name; }
+        }
+
+        public string ShortName
+        {
+            get { return shortName; }
         }
     }
 }
