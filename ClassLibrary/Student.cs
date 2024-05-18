@@ -17,20 +17,14 @@ namespace ClassLibrary
         private readonly Group group;
         private readonly DateTime birth;
       
-        public Student(string surname, string name, string patronymic, Group group, DateTime birth)
+        public Student(string surname, string name, string patronymic, Group group, DateTime birth = DateTime.Today)
         {
             this.surname = surname;
             this.name = name;
             this.patronymic = patronymic;
             this.group = group;
-            if (birth != null)
-            {
-                this.birth = birth;
-            }
-            else
-            {
-                this.birth = DateTime.Today;
-            }
+            this.birth = birth;
+
         }
 
         public string Surname
