@@ -138,7 +138,7 @@ namespace ConsoleApp
         public static void PrintTypeOfActivity(TypeOfActivity typeofactivity) 
         {
             Console.WriteLine("Вид деятельности:");
-            Console.WriteLine($"Буква: {typeofactivity.Name}");
+            Console.WriteLine($"Название: {typeofactivity.Name}");
         }
         
         public static void PrintObjectsList(int choice)
