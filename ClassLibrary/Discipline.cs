@@ -16,12 +16,6 @@ namespace ClassLibrary
             this.name = name;
             this.shortName = shortName;          
         }
-        public Discipline(string name, string shortName, DateTime dateHeld)
-        {
-            this.name = name;
-            this.shortName = shortName;
-        }
-
         public string Name
         {
             get { return name; }
