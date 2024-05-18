@@ -149,7 +149,7 @@ namespace ConsoleApp
             ClassLibrary.Group group = DB.groups.FirstOrDefault(l => speciality == l.Speciality && classroomteatcher == l.Classroomteatcher);
             if (group == null)
             {
-                group = new ClassLibrary.Group(name, shortname, quantity, speciality, classroomteatcher, year);
+                group = new ClassLibrary.Group(name, shortname, quantity, year, speciality, classroomteatcher);
                 DB.groups.Add(group);
                 Console.WriteLine("Группа успешно создана.");
             }
