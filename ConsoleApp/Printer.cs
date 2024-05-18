@@ -56,14 +56,14 @@ namespace ConsoleApp
             PrintEmployee(group.Classroomteatcher);
         }
 
-        public static void PrintStudent(Student student) // тимлид делать за людей не будет
+        public static void PrintStudent(Student student) 
         {
             Console.WriteLine("Студент:");
             Console.WriteLine($"Фамилия: {student.Surname}");
             Console.WriteLine($"Имя: {student.Name}");
             Console.WriteLine($"Отчество: {student.Patronymic}");
-            Console.WriteLine($"Группа: {student.Group.Name}");
             Console.WriteLine($"Дата рождения: {student.Birth:dd.MM.yyyy}");
+            PrintGroup(student.Group);
         }
 
         public static void PrintSpeciality(Speciality speciality)

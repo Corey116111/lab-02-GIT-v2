@@ -157,9 +157,32 @@ namespace ConsoleApp
             return group;
         }
 
-        public static Student CreateStudent() // тимлид делать за людей не будет
+        public static Student CreateStudent() 
         {
-            return null;
+            Console.WriteLine("Введите фамилию студента:");
+            string surname = Console.ReadLine();
+
+            Console.WriteLine("Введите имя студента:");
+            string name = Console.ReadLine();
+
+            Console.WriteLine("Введите отчество студента:");
+            string patronymic = Console.ReadLine();
+
+            Console.WriteLine("Введите день рождения студента:");
+            string birth = Console.ReadLine();
+
+            ClassLibrary.Group group = CreateGroup();
+
+            Student student = DB.students.FirstOrDefault(l => group == l.Group);
+
+            if (student == null)
+            {
+                student = new Student(surname, name, patronymic, group, DateTime.Parse(birth));
+                DB.students.Add(student);
+                Console.WriteLine("Студент успешно создан");
+            }
+
+            return student;
         }
 
         public static Speciality CreateSpeciality()
