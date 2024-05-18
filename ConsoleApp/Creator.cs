@@ -99,7 +99,7 @@ namespace ConsoleApp
                 equipment[i] = CreateEquipment();
             }
 
-            Classroom classroom = DB.classrooms.FirstOrDefault(l => name == l.Name && employee == l.Employee && countPlaces == l.Places && countWindows == l.Windows && equipment == l.Equipment);
+            Classroom classroom = DB.classrooms.FirstOrDefault(l => name == l.Name && employee == l.Responsible && countPlaces == l.Places && countWindows == l.Windows && equipment == l.Equipment);
 
             if (classroom == null)
             {
