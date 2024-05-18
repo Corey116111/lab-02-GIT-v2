@@ -13,6 +13,7 @@ namespace ClassLibrary
         private Organization organization;
 
 
+
         public Subdivision(string name, Employee director, Organization organization)
         {
             this.name = name;
