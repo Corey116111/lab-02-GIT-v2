@@ -21,7 +21,7 @@ namespace ClassLibrary
         
         public Lesson(DateTime dateHeld, Discipline discipline, Employee employee, Classroom classroom, Group group, Pair pair, TypeOfActivity lessonType)
         {
-            this.dateHeld = dateHeld != default ? dateHeld : DateTime.Now;
+            this.dateHeld = dateHeld;
             this.discipline = discipline;
             this.employee = employee;
             this.classroom = classroom;
