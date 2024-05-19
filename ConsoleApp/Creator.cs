@@ -99,7 +99,7 @@ namespace ConsoleApp
                 equipment[i] = CreateEquipment();
             }
 
-            Classroom classroom = DB.classrooms.FirstOrDefault(l => name == l.Name && employee == l.Employee && countPlaces == l.Places && countWindows == l.Windows && equipment == l.Equipment);
+            Classroom classroom = DB.classrooms.FirstOrDefault(l => name == l.Name && employee == l.Responsible && countPlaces == l.Places && countWindows == l.Windows && equipment == l.Equipment);
 
             if (classroom == null)
             {
@@ -149,7 +149,7 @@ namespace ConsoleApp
             ClassLibrary.Group group = DB.groups.FirstOrDefault(l => speciality == l.Speciality && classroomteatcher == l.Classroomteatcher);
             if (group == null)
             {
-                group = new ClassLibrary.Group(name, shortname, quantity, speciality, classroomteatcher, year);
+                group = new ClassLibrary.Group(name, shortname, quantity, year, speciality, classroomteatcher);
                 DB.groups.Add(group);
                 Console.WriteLine("Группа успешно создана.");
             }
@@ -212,11 +212,11 @@ namespace ConsoleApp
         {
             Console.WriteLine("Введите название смены:");
             string name = Console.ReadLine();
-            Shift shift = new Shift(name);
+            Shift shift = DB.shifts.FirstOrDefault();
             if (shift == null)
             {
-                DB.shifts.Add(shift);
                 shift = new Shift(name);
+                DB.shifts.Add(shift);
                 Console.WriteLine("Смена успешно создана.");
             }
 

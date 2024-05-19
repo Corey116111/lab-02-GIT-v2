@@ -19,18 +19,18 @@ namespace ClassLibrary
         private readonly DateTime birth;
       
         public Student(string surname, string name, string patronymic, Group group)
-        : this(surname, name, patronymic, group, DateTime.Now)
-    {
-    }
+    : this(surname, name, patronymic, group, DateTime.Now)
+{
+}
 
-    public Student(string surname, string name, string patronymic, Group group, DateTime birth)
-    {
-        this.surname = surname;
-        this.name = name;
-        this.patronymic = patronymic;
-        this.group = group;
-        this.birth = birth;
-    }
+public Student(string surname, string name, string patronymic, Group group, DateTime birth)
+{
+    this.surname = surname;
+    this.name = name;
+    this.patronymic = patronymic;
+    this.group = group;
+    this.birth = birth;
+}
 
         public string Surname
         {
