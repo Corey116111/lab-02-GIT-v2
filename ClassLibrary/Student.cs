@@ -9,6 +9,7 @@ namespace ClassLibrary
     /// <summary>
     /// https://docs.google.com/document/d/1FrtPd2tz85cDVhZCYXqL0wrByPjNbd6kUbjXzOzfLPc/edit 5 вариант
     /// </summary>
+
     public class Student
     {
         private readonly string surname;
@@ -17,19 +18,21 @@ namespace ClassLibrary
         private readonly Group group;
         private readonly DateTime birth;
       
-        public Student(string surname, string name, string patronymic, Group group)
-        : this(surname, name, patronymic, group, DateTime.Now)
-    {
-    }
-
-    public Student(string surname, string name, string patronymic, Group group, DateTime birth)
-    {
-        this.surname = surname;
-        this.name = name;
-        this.patronymic = patronymic;
-        this.group = group;
-        this.birth = birth;
-    }
+        public Student(string surname, string name, string patronymic, Group group, DateTime birth)
+        {
+            this.surname = surname;
+            this.name = name;
+            this.patronymic = patronymic;
+            this.group = group;
+            if (birth != null)
+            {
+                this.birth = birth;
+            }
+            else
+            {
+                this.birth = DateTime.Today;
+            }
+        }
 
         public string Surname
         {

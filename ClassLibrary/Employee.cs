@@ -8,27 +8,28 @@ using System.Threading.Tasks;
 
 namespace ClassLibrary
 {
+
     /// <summary>
     /// https://docs.google.com/document/d/1dhWsZqo-d1x4uk0y45lDVnu4H91wRvpRWKJ0lfCizxY/edit 9 вариант
     /// </summary>
     public class Employee
     {
-        private string UserName;
-        private string UserSurname;
-        private string UserPatronymic;
-        private Job_title job_title;
+        private readonly string name;
+        private readonly string surname;
+        private readonly string patronymic;
+        private readonly JobTitle jobtitle;
 
-        public Employee(string UserName, string UserSurname, string UserPatronymic, Job_title job_Title)
+        public Employee(string name, string surname, string patronymic, JobTitle jobTitle)
         {
-            this.UserName = UserName;
-            this.UserSurname = UserSurname;
-            this.UserPatronymic = UserPatronymic;
-            this.job_title = job_Title;
+            this.name = name;
+            this.surname = surname;
+            this.patronymic = patronymic;
+            this.jobtitle = jobTitle;
         }
+        public string Name { get { return name; } }
+        public string Surname { get { return surname; } }
+        public string Patronymic { get { return patronymic; } }
 
-        public string FullName
-        {
-            get { return $"{UserSurname} {UserName} {UserPatronymic}"; }
-        }
+        public JobTitle JobTitle => jobtitle;
     }
 }
