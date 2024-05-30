@@ -14,21 +14,21 @@ namespace ClassLibrary
     public class Classroom
     {
         private readonly string name;
-        private readonly Employee employee;
+        private readonly Employee responsible;
         private readonly int countPlaces;
         private readonly int countWindows;
         private readonly Equipment[] equipment;
-        public Classroom(string name, Employee employee, int countPlaces, int countWindows, Equipment[] equipment)
+        public Classroom(string name, Employee responsible, int countPlaces, int countWindows, Equipment[] equipment)
         {
             this.name = name;
-            this.employee = employee;
+            this.responsible = responsible;
             this.countPlaces = countPlaces;
             this.countWindows = countWindows;
             this.equipment = equipment;
         }
 
         public string Name { get { return name; } }
-        public Employee Employee { get { return employee; } }
+        public Employee Responsible { get { return responsible; } }
         public int Places { get { return countPlaces; } }
         public int Windows { get { return countWindows; } }
         public Equipment[] Equipment { get { return equipment; } }
