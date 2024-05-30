@@ -223,9 +223,29 @@ namespace ConsoleApp
             return shift;
         }
 
-        static public Employee CreateEmployee() // тимлид делать за людей не будет
+        static public Employee CreateEmployee()
         {
-            return null;
+            Console.WriteLine("Введите имя сотрудника:");
+            string name = Console.ReadLine();
+
+            Console.WriteLine("Введите фамилию сотрудника:");
+            string surname = Console.ReadLine();
+
+            Console.WriteLine("Введите отчество сотрудника:");
+            string patronymic = Console.ReadLine();
+
+            JobTitle jobTitle = CreateJobTitle();
+            Employee employee = DB.employees.FirstOrDefault(l => jobTitle == l.JobTitle);
+
+            if (employee == null)
+            {
+                employee = new Employee(name, surname, patronymic, jobTitle);
+                DB.employees.Add(employee);
+                Console.WriteLine("Сотрудник успешно создан");
+            }
+
+            return employee;
+
         }
 
         static public JobTitle CreateJobTitle() 

@@ -89,13 +89,13 @@ namespace ConsoleApp
             Console.WriteLine($"Название: {shift.Name}");
         }
         
-        public static void PrintEmployee(Employee employee) // тимлид делать за людей не будет
+        public static void PrintEmployee(Employee employee)
         {
             Console.WriteLine("Сотрудник:");
             Console.WriteLine($"Имя: {employee.Name}");
             Console.WriteLine($"Фамилия: {employee.Surname}");
             Console.WriteLine($"Отчество: {employee.Patronymic}");
-            Console.WriteLine($"Должность: {employee.JobTitle.Name}");
+            PrintJobTitle(employee.JobTitle);
         }
 
         public static void PrintJobTitle(JobTitle jobTitle) 
