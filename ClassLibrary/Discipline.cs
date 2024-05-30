@@ -17,7 +17,7 @@ namespace ClassLibrary
         public Discipline(string name, string shortName)
         {
             this.name = name;
-            this.shortName = shortName;          
+            this.shortName = shortName;
         }
         public string Name
         {

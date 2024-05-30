@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace ClassLibrary
 {
-    class Job_title
+    public class Equipment
     {
+
     }
 }
