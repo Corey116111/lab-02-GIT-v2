@@ -21,7 +21,7 @@ namespace ConsoleApp
             PrintTypeOfActivity(lesson.TypeOfActivity);
         }
 
-        public static void PrintDiscipline(Discipline discipline)  // тимлид делать за людей не будет
+        public static void PrintDiscipline(Discipline discipline)  
         {
             Console.WriteLine("Дисциплина:");
             Console.WriteLine($"Название: {discipline.Name}");

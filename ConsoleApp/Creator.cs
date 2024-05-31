@@ -110,10 +110,24 @@ namespace ConsoleApp
 
             return classroom;
         }
-        
-        public static Discipline CreateDiscipline() // тимлид делать за людей не будет
+
+        public static Discipline CreateDiscipline()
         {
-            return null;
+            Console.WriteLine("Введите название дисциплины:"); 
+            string disciplineName = Console.ReadLine();
+
+            Console.WriteLine("Введите короткое название дисциплины:");
+            string disciplineShortName = Console.ReadLine();
+
+            Discipline discipline = DB.disciplines.FirstOrDefault();
+
+            if (discipline == null)
+            {
+                discipline = new Discipline(disciplineName, disciplineShortName);
+                DB.disciplines.Add(discipline);
+                Console.WriteLine("Дисциплина успешно создана.");
+            }
+            return discipline;
         }
 
         public static ClassLibrary.Group CreateGroup()
