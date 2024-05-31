@@ -11,7 +11,7 @@ namespace ClassLibrary
     /// https://docs.google.com/document/d/1r4OjKXg5_5yj6ibHB778UEF5Z1nbUqGdXjpQXbTGWiQ/edit 7 вариант
     /// </summary>
 
-    public class Pair //// люди за сомнительную деятельность тимлида ответственности не несут   ㄟ( ▔, ▔ )ㄏ
+    public class Pair 
     {
         private readonly TimeSpan time_pair_start;
         private readonly TimeSpan time_pair_end;
