@@ -8,9 +8,9 @@ namespace ClassLibrary
 {
     public class Subdivision
     {
-        private string name;
-        private Employee director;
-        private Organization organization;
+        private readonly string name;
+        private readonly Employee director;
+        private readonly Organization organization;
 
 
 
