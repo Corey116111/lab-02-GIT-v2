@@ -268,7 +268,7 @@ namespace ConsoleApp
             string name = Console.ReadLine();
 
             Console.WriteLine("Введите зарплату должности:");
-            int salary = Convert.ToInt32(Console.ReadLine());
+            decimal salary = Convert.ToInt32(Console.ReadLine());
 
             Subdivision subdivision = CreateSubdivision();
             JobTitle jobTitle = DB.positions.FirstOrDefault(l => subdivision == l.Subdivision);
