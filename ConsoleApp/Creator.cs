@@ -110,10 +110,24 @@ namespace ConsoleApp
 
             return classroom;
         }
-        
-        public static Discipline CreateDiscipline() // тимлид делать за людей не будет
+
+        public static Discipline CreateDiscipline()
         {
-            return null;
+            Console.WriteLine("Введите название дисциплины:"); 
+            string disciplineName = Console.ReadLine();
+
+            Console.WriteLine("Введите короткое название дисциплины:");
+            string disciplineShortName = Console.ReadLine();
+
+            Discipline discipline = DB.disciplines.FirstOrDefault();
+
+            if (discipline == null)
+            {
+                discipline = new Discipline(disciplineName, disciplineShortName);
+                DB.disciplines.Add(discipline);
+                Console.WriteLine("Дисциплина успешно создана.");
+            }
+            return discipline;
         }
 
         public static ClassLibrary.Group CreateGroup()
@@ -223,9 +237,29 @@ namespace ConsoleApp
             return shift;
         }
 
-        static public Employee CreateEmployee() // тимлид делать за людей не будет
+        static public Employee CreateEmployee()
         {
-            return null;
+            Console.WriteLine("Введите имя сотрудника:");
+            string name = Console.ReadLine();
+
+            Console.WriteLine("Введите фамилию сотрудника:");
+            string surname = Console.ReadLine();
+
+            Console.WriteLine("Введите отчество сотрудника:");
+            string patronymic = Console.ReadLine();
+
+            JobTitle jobTitle = CreateJobTitle();
+            Employee employee = DB.employees.FirstOrDefault(l => jobTitle == l.JobTitle);
+
+            if (employee == null)
+            {
+                employee = new Employee(name, surname, patronymic, jobTitle);
+                DB.employees.Add(employee);
+                Console.WriteLine("Сотрудник успешно создан");
+            }
+
+            return employee;
+
         }
 
         static public JobTitle CreateJobTitle() 
@@ -234,7 +268,7 @@ namespace ConsoleApp
             string name = Console.ReadLine();
 
             Console.WriteLine("Введите зарплату должности:");
-            int salary = Convert.ToInt32(Console.ReadLine());
+            decimal salary = Convert.ToInt32(Console.ReadLine());
 
             Subdivision subdivision = CreateSubdivision();
             JobTitle jobTitle = DB.positions.FirstOrDefault(l => subdivision == l.Subdivision);
