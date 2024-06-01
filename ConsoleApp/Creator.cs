@@ -172,8 +172,8 @@ namespace ConsoleApp
             string birth = Console.ReadLine();
 
             ClassLibrary.Group group = CreateGroup();
-
-            Student student = DB.students.FirstOrDefault(l => group == l.Group);
+            string FullName = $"{surname} {name} {patronymic}";
+            Student student = DB.students.FirstOrDefault(l => FullName == l.FullName);
 
             if (student == null)
             {
