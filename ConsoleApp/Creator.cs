@@ -291,8 +291,26 @@ namespace ConsoleApp
         }
 
         static public Organization CreateOrganization() // тимлид делать за людей не будет
-        { 
-            return null;
+        {
+            Console.WriteLine("Введите название организации:");
+            string name = Console.ReadLine();
+
+            Console.WriteLine("Введите юридический адрес организации:");
+            string legalAdress = Console.ReadLine();
+
+            Console.WriteLine("Введите фактический адрес организации:");
+            string actualAdress = Console.ReadLine();
+
+            Console.WriteLine("Введите данные руководителя:");
+            Employee director = CreateEmployee();
+            Organization organization = DB.organizations.FirstOrDefault(l => director == l.Employee);
+            if (organization == null)
+            {
+                organization = new Organization(name, legalAdress, actualAdress, director);
+                DB.organizations.Add(organization);
+                Console.WriteLine("Организация успешно создана.");
+            }
+            return organization;
         }
 
         static public BuildingBody CreateBody()
