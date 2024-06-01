@@ -222,7 +222,7 @@ namespace ConsoleApp
                 Console.WriteLine("Введите время начала пары: ");
             }
 
-            Pair pair = DB.pairs.FirstOrDefault(l => startPair == l.Time_pair_start);
+            Pair pair = DB.pairs.FirstOrDefault(l => startPair == l.StartPair);
 
             if (pair == null)
             {
