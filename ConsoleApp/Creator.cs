@@ -205,9 +205,9 @@ namespace ConsoleApp
 
         public static Pair CreatePair()
         {
-            Console.WriteLine("Введите время начала пары: ");
             try
             {
+                Console.WriteLine("Введите время начала пары: ");
                 TimeSpan startPair = TimeSpan.Parse(Console.ReadLine());
                 Console.WriteLine("Введите время окончания пары: ");
                 TimeSpan endPair = TimeSpan.Parse(Console.ReadLine());
@@ -218,6 +218,11 @@ namespace ConsoleApp
 
                 Shift shift = CreateShift();
                 Pair pair = DB.pairs.FirstOrDefault();
+
+                if (pair.Time_pair_start == startPair)
+                {
+                    Console.WriteLine("В это время уже есть пара.");
+                }
 
                 if (pair == null)
                 {
