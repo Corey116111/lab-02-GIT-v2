@@ -68,29 +68,28 @@ namespace ConsoleApp
             if (classroom == null)
             {
                 Employee employee = CreateEmployee();
+                int countPlaces = 0;
+                int countWindows = 0;
+                int countEquipment = 0;
                 Console.WriteLine("Введите количество посадочных мест:");
-                bool f1 = int.TryParse(Console.ReadLine(), out int countPlaces);
-                while (countPlaces < 0 || !f1)
+                while (!int.TryParse(Console.ReadLine(), out countPlaces) || countPlaces < 0)
                 {
                     Console.WriteLine("Некорректный ввод");
                     Console.WriteLine("Введите количество посадочных мест:");
-                    f1 = int.TryParse(Console.ReadLine(), out countPlaces);
                 }
+
                 Console.WriteLine("Введите количество окон:");
-                bool f2 = int.TryParse(Console.ReadLine(), out int countWindows);
-                while (countWindows < 0 || !f2)
+                while (!int.TryParse(Console.ReadLine(), out countWindows) || countWindows < 0)
                 {
                     Console.WriteLine("Некорректный ввод");
                     Console.WriteLine("Введите количество окон:");
-                    f2 = int.TryParse(Console.ReadLine(), out countWindows);
                 }
+
                 Console.WriteLine("Введите количество оборудования:");
-                bool f3 = int.TryParse(Console.ReadLine(), out int countEquipment);
-                while (countEquipment < 0 || !f3)
+                while (!int.TryParse(Console.ReadLine(), out countEquipment) || countEquipment < 0)
                 {
                     Console.WriteLine("Некорректный ввод");
                     Console.WriteLine("Введите количество оборудования:");
-                    f3 = int.TryParse(Console.ReadLine(), out countEquipment);
                 }
                 Equipment[] equipment = new Equipment[countEquipment];
                 for (int i = 0; i < countEquipment; i++)
