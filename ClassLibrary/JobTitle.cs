@@ -13,11 +13,11 @@ namespace ClassLibrary
     public class JobTitle
     {
         private readonly string name;
-        private readonly int salary;
+        private readonly decimal salary;
         private readonly Subdivision subdivision;
 
 
-        public JobTitle(string name, int salary, Subdivision subdivision)
+        public JobTitle(string name, decimal salary, Subdivision subdivision)
         {
             this.name = name;
             this.salary = salary;
@@ -32,7 +32,7 @@ namespace ClassLibrary
         {
             get { return subdivision; }
         }
-        public int Salary
+        public decimal Salary
         {
             get { return salary; }
         }
