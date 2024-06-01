@@ -59,55 +59,47 @@ namespace ConsoleApp
 
             return lesson;
         }
-      
+
         public static Classroom CreateClassroom()
         {
             Console.WriteLine("Введите название аудитории:");
             string name = Console.ReadLine();
-
-            Employee employee = CreateEmployee();
-
-            Console.WriteLine("Введите количество посадочных мест:");
-            bool f1 = int.TryParse(Console.ReadLine(), out int countPlaces);
-            while (countPlaces < 0 || !f1)
-            {
-                Console.WriteLine("Некорректный ввод");
-                Console.WriteLine("Введите количество посадочных мест:");
-                f1 = int.TryParse(Console.ReadLine(), out countPlaces);
-            }
-
-            Console.WriteLine("Введите количество окон:");
-            bool f2 = int.TryParse(Console.ReadLine(), out int countWindows);
-            while (countWindows < 0 || !f2)
-            {
-                Console.WriteLine("Некорректный ввод");
-                Console.WriteLine("Введите количество окон:");
-                f2 = int.TryParse(Console.ReadLine(), out countWindows);
-            }
-
-            Console.WriteLine("Введите количество оборудования:");
-            bool f3 = int.TryParse(Console.ReadLine(), out int countEquipment);
-            while (countEquipment < 0 || !f3)
-            {
-                Console.WriteLine("Некорректный ввод");
-                Console.WriteLine("Введите количество оборудования:");
-                f3 = int.TryParse(Console.ReadLine(), out countEquipment);
-            }
-            Equipment[] equipment = new Equipment[countEquipment];
-            for(int i = 0; i < countEquipment; i++)
-            {
-                equipment[i] = CreateEquipment();
-            }
-
-            Classroom classroom = DB.classrooms.FirstOrDefault(l => name == l.Name && employee == l.Responsible && countPlaces == l.Places && countWindows == l.Windows && equipment == l.Equipment);
-
+            Classroom classroom = DB.classrooms.FirstOrDefault(l => name == l.Name);
             if (classroom == null)
             {
+                Employee employee = CreateEmployee();
+                int countPlaces = 0;
+                int countWindows = 0;
+                int countEquipment = 0;
+                Console.WriteLine("Введите количество посадочных мест:");
+                while (!int.TryParse(Console.ReadLine(), out countPlaces) && countPlaces < 0)
+                {
+                    Console.WriteLine("Некорректный ввод");
+                    Console.WriteLine("Введите количество посадочных мест:");
+                }
+
+                Console.WriteLine("Введите количество окон:");
+                while (!int.TryParse(Console.ReadLine(), out countWindows) && countWindows < 0)
+                {
+                    Console.WriteLine("Некорректный ввод");
+                    Console.WriteLine("Введите количество окон:");
+                }
+
+                Console.WriteLine("Введите количество оборудования:");
+                while (!int.TryParse(Console.ReadLine(), out countEquipment) && countEquipment < 0)
+                {
+                    Console.WriteLine("Некорректный ввод");
+                    Console.WriteLine("Введите количество оборудования:");
+                }
+                Equipment[] equipment = new Equipment[countEquipment];
+                for (int i = 0; i < countEquipment; i++)
+                {
+                    equipment[i] = CreateEquipment();
+                }
                 classroom = new Classroom(name, employee, countPlaces, countWindows, equipment);
                 DB.classrooms.Add(classroom);
                 Console.WriteLine("Аудитория успешно создана.");
             }
-
             return classroom;
         }
 
