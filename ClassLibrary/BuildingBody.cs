@@ -8,24 +8,24 @@ namespace ClassLibrary
     /// </summary>
 
 
-    public class Body
+    public class BuildingBody
     {
         private readonly string name;
         private readonly string address;
-        private readonly Employee employee;
+        private readonly Employee commandant;
         private readonly Organization organization;
 
-        public Body(string name, string address, Employee employee, Organization organization)
+        public BuildingBody(string name, string address, Employee employee, Organization organization)
         {
             this.name = name;
             this.address = address;
-            this.employee = employee; 
+            this.commandant = employee; 
             this.organization = organization; 
         }
 
         public string Name { get { return name; } }
         public string Address { get { return address; } }
-        public Employee Employe => employee;
+        public Employee Employe => commandant;
         public Organization Organization => organization;
     }
 }
