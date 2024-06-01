@@ -186,8 +186,8 @@ namespace ConsoleApp
             string birth = Console.ReadLine();
 
             ClassLibrary.Group group = CreateGroup();
-
-            Student student = DB.students.FirstOrDefault(l => group == l.Group);
+            string FullName = $"{surname} {name} {patronymic}";
+            Student student = DB.students.FirstOrDefault(l => FullName == l.FullName);
 
             if (student == null)
             {
@@ -288,7 +288,7 @@ namespace ConsoleApp
             Organization organization = CreateOrganization();
             Console.WriteLine("Введите имя подразделения");
             string name = Console.ReadLine();
-            Subdivision subdivision = DB.subdivisions.FirstOrDefault(el => el.Employee == employee && el.Organization == organization);
+            Subdivision subdivision = DB.subdivisions.FirstOrDefault(el => el.Name == name);
 
             if (subdivision == null)
             {
