@@ -11,7 +11,7 @@ namespace ConsoleApp
 {
     internal static class Creator
     {
-        
+
         public static Lesson CreateLesson()
         {
             Discipline discipline = CreateDiscipline();
@@ -105,7 +105,7 @@ namespace ConsoleApp
 
         public static Discipline CreateDiscipline()
         {
-            Console.WriteLine("Введите название дисциплины:"); 
+            Console.WriteLine("Введите название дисциплины:");
             string disciplineName = Console.ReadLine();
 
             Console.WriteLine("Введите короткое название дисциплины:");
@@ -136,7 +136,7 @@ namespace ConsoleApp
                 Console.WriteLine("Введите численность группы: ");
                 int quantity = 0;
 
-                while(!int.TryParse(Console.ReadLine(), out quantity) && quantity < 0)
+                while (!int.TryParse(Console.ReadLine(), out quantity) && quantity < 0)
                 {
                     Console.WriteLine("Численность группы не может быть меньше нуля");
                     Console.WriteLine("Введите численность группы: ");
@@ -145,7 +145,7 @@ namespace ConsoleApp
                 Console.WriteLine("Введите год поступления: ");
                 int year = 0;
 
-                while(!int.TryParse(Console.ReadLine(), out  year) && year < 0)
+                while (!int.TryParse(Console.ReadLine(), out year) && year < 0)
                 {
                     Console.WriteLine("Неверный год. Повторите ввод:");
                 }
@@ -161,7 +161,7 @@ namespace ConsoleApp
             return group;
         }
 
-        public static Student CreateStudent() 
+        public static Student CreateStudent()
         {
             Console.WriteLine("Введите фамилию студента:");
             string surname = Console.ReadLine();
@@ -172,8 +172,6 @@ namespace ConsoleApp
             Console.WriteLine("Введите отчество студента:");
             string patronymic = Console.ReadLine();
 
-            Console.WriteLine("Введите день рождения студента:");
-            string birth = Console.ReadLine();
 
             ClassLibrary.Group group = CreateGroup();
             string FullName = $"{surname} {name} {patronymic}";
@@ -181,6 +179,9 @@ namespace ConsoleApp
 
             if (student == null)
             {
+
+                Console.WriteLine("Введите день рождения студента:");
+                string birth = Console.ReadLine();
                 student = new Student(surname, name, patronymic, group, DateTime.Parse(birth));
                 DB.students.Add(student);
                 Console.WriteLine("Студент успешно создан");
@@ -211,7 +212,7 @@ namespace ConsoleApp
         {
             return null;
         }
-        
+
         static public Shift CreateShift()
         {
             Console.WriteLine("Введите название смены:");
@@ -252,7 +253,7 @@ namespace ConsoleApp
 
         }
 
-        static public JobTitle CreateJobTitle() 
+        static public JobTitle CreateJobTitle()
         {
             Console.WriteLine("Введите название должности:");
             string name = Console.ReadLine();
@@ -290,7 +291,7 @@ namespace ConsoleApp
             return subdivision;
         }
 
-        static public Organization CreateOrganization() // тимлид делать за людей не будет
+        static public Organization CreateOrganization() 
         {
             Console.WriteLine("Введите название организации:");
             string name = Console.ReadLine();
@@ -359,10 +360,10 @@ namespace ConsoleApp
         }
 
         private static bool ValidateTimeFormat(string time)
-         {
+        {
             string pattern = @"^(2[0-3]|[01][0-9]):[0-5][0-9]$";
             return Regex.IsMatch(time, pattern);
-         }
+        }
 
     }
 }
