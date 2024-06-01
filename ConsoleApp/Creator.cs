@@ -72,21 +72,21 @@ namespace ConsoleApp
                 int countWindows = 0;
                 int countEquipment = 0;
                 Console.WriteLine("Введите количество посадочных мест:");
-                while (!int.TryParse(Console.ReadLine(), out countPlaces) || countPlaces < 0)
+                while (!int.TryParse(Console.ReadLine(), out countPlaces) && countPlaces < 0)
                 {
                     Console.WriteLine("Некорректный ввод");
                     Console.WriteLine("Введите количество посадочных мест:");
                 }
 
                 Console.WriteLine("Введите количество окон:");
-                while (!int.TryParse(Console.ReadLine(), out countWindows) || countWindows < 0)
+                while (!int.TryParse(Console.ReadLine(), out countWindows) && countWindows < 0)
                 {
                     Console.WriteLine("Некорректный ввод");
                     Console.WriteLine("Введите количество окон:");
                 }
 
                 Console.WriteLine("Введите количество оборудования:");
-                while (!int.TryParse(Console.ReadLine(), out countEquipment) || countEquipment < 0)
+                while (!int.TryParse(Console.ReadLine(), out countEquipment) && countEquipment < 0)
                 {
                     Console.WriteLine("Некорректный ввод");
                     Console.WriteLine("Введите количество оборудования:");
