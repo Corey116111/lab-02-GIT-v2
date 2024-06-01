@@ -150,7 +150,7 @@ namespace ConsoleApp
             return null;
         }
 
-        static public Body CreateBody()
+        static public BuildingBody CreateBody()
         {
             Console.WriteLine("Введите название корпуса:");
             string name = Console.ReadLine();
@@ -162,12 +162,12 @@ namespace ConsoleApp
 
             Organization organization = CreateOrganization();
 
-            Body body = DB.bodies.FirstOrDefault(l => employee == l.Employe && organization == l.Organization);
+            BuildingBody body = DB.buildingbodies.FirstOrDefault(l => employee == l.Employe && organization == l.Organization);
 
             if (body == null)
             {
-                body = new Body(name, address, employee, organization);
-                DB.bodies.Add(body);
+                body = new BuildingBody(name, address, employee, organization);
+                DB.buildingbodies.Add(body);
                 Console.WriteLine("Корпус успешно создан.");
             }
 
