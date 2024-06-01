@@ -213,6 +213,8 @@ namespace ConsoleApp
 
         public static Pair CreatePair()
         {
+            Pair pair = DB.pairs.FirstOrDefault();
+            Shift shift = CreateShift();
             TimeSpan startPair;
             TimeSpan endPair;
             TimeSpan startBreak;
@@ -225,6 +227,13 @@ namespace ConsoleApp
                 {
                     Console.WriteLine("Введите время начала пары: ");
                     startPair = TimeSpan.Parse(Console.ReadLine());
+                    for (int i = 0; i < DB.pairs.Count; i++)
+                    {
+                        if (DB.pairs[i].Time_pair_start == startPair)
+                        {
+                            Console.WriteLine("В это время уже есть пара.");
+                        }
+                    }
                     break;
                 }
                 catch
@@ -274,13 +283,6 @@ namespace ConsoleApp
             }
 
 
-            Shift shift = CreateShift();
-            Pair pair = DB.pairs.FirstOrDefault();
-
-            if (pair.Time_pair_start == startPair)
-            {
-                Console.WriteLine("В это время уже есть пара.");
-            }
 
             if (pair == null)
             {
