@@ -288,7 +288,7 @@ namespace ConsoleApp
             Organization organization = CreateOrganization();
             Console.WriteLine("Введите имя подразделения");
             string name = Console.ReadLine();
-            Subdivision subdivision = DB.subdivisions.FirstOrDefault(el => el.Employee == employee && el.Organization == organization);
+            Subdivision subdivision = DB.subdivisions.FirstOrDefault(el => el.Name == name);
 
             if (subdivision == null)
             {
