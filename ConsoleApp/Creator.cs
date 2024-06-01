@@ -59,55 +59,47 @@ namespace ConsoleApp
 
             return lesson;
         }
-      
+
         public static Classroom CreateClassroom()
         {
             Console.WriteLine("Введите название аудитории:");
             string name = Console.ReadLine();
-
-            Employee employee = CreateEmployee();
-
-            Console.WriteLine("Введите количество посадочных мест:");
-            bool f1 = int.TryParse(Console.ReadLine(), out int countPlaces);
-            while (countPlaces < 0 || !f1)
-            {
-                Console.WriteLine("Некорректный ввод");
-                Console.WriteLine("Введите количество посадочных мест:");
-                f1 = int.TryParse(Console.ReadLine(), out countPlaces);
-            }
-
-            Console.WriteLine("Введите количество окон:");
-            bool f2 = int.TryParse(Console.ReadLine(), out int countWindows);
-            while (countWindows < 0 || !f2)
-            {
-                Console.WriteLine("Некорректный ввод");
-                Console.WriteLine("Введите количество окон:");
-                f2 = int.TryParse(Console.ReadLine(), out countWindows);
-            }
-
-            Console.WriteLine("Введите количество оборудования:");
-            bool f3 = int.TryParse(Console.ReadLine(), out int countEquipment);
-            while (countEquipment < 0 || !f3)
-            {
-                Console.WriteLine("Некорректный ввод");
-                Console.WriteLine("Введите количество оборудования:");
-                f3 = int.TryParse(Console.ReadLine(), out countEquipment);
-            }
-            Equipment[] equipment = new Equipment[countEquipment];
-            for(int i = 0; i < countEquipment; i++)
-            {
-                equipment[i] = CreateEquipment();
-            }
-
-            Classroom classroom = DB.classrooms.FirstOrDefault(l => name == l.Name && employee == l.Responsible && countPlaces == l.Places && countWindows == l.Windows && equipment == l.Equipment);
-
+            Classroom classroom = DB.classrooms.FirstOrDefault(l => name == l.Name);
             if (classroom == null)
             {
+                Employee employee = CreateEmployee();
+                int countPlaces = 0;
+                int countWindows = 0;
+                int countEquipment = 0;
+                Console.WriteLine("Введите количество посадочных мест:");
+                while (!int.TryParse(Console.ReadLine(), out countPlaces) && countPlaces < 0)
+                {
+                    Console.WriteLine("Некорректный ввод");
+                    Console.WriteLine("Введите количество посадочных мест:");
+                }
+
+                Console.WriteLine("Введите количество окон:");
+                while (!int.TryParse(Console.ReadLine(), out countWindows) && countWindows < 0)
+                {
+                    Console.WriteLine("Некорректный ввод");
+                    Console.WriteLine("Введите количество окон:");
+                }
+
+                Console.WriteLine("Введите количество оборудования:");
+                while (!int.TryParse(Console.ReadLine(), out countEquipment) && countEquipment < 0)
+                {
+                    Console.WriteLine("Некорректный ввод");
+                    Console.WriteLine("Введите количество оборудования:");
+                }
+                Equipment[] equipment = new Equipment[countEquipment];
+                for (int i = 0; i < countEquipment; i++)
+                {
+                    equipment[i] = CreateEquipment();
+                }
                 classroom = new Classroom(name, employee, countPlaces, countWindows, equipment);
                 DB.classrooms.Add(classroom);
                 Console.WriteLine("Аудитория успешно создана.");
             }
-
             return classroom;
         }
 
@@ -135,34 +127,32 @@ namespace ConsoleApp
             Console.WriteLine("Введите название группы");
             string name = Console.ReadLine();
 
-            Console.WriteLine("Введите сокращение группы");
-            string shortname = Console.ReadLine();
-
-            Console.WriteLine("Введите численность группы");
-            int quantity = int.Parse(Console.ReadLine());
-
-            if(quantity <= 0) 
-            {
-                Console.WriteLine("Численность группы не может быть меньше нуля");
-                quantity = int.Parse(Console.ReadLine());
-            }
-
-            Console.WriteLine("Введите год поступления");
-            int year = int.Parse(Console.ReadLine());
-
-            if(year <= 0)
-            {
-                Console.WriteLine("Неверный год. Повторите ввод:");
-                year = int.Parse(Console.ReadLine());
-            }
-
-            Speciality speciality = CreateSpeciality();
-
-            Employee classroomteatcher = CreateEmployee();
-
-            ClassLibrary.Group group = DB.groups.FirstOrDefault(l => speciality == l.Speciality && classroomteatcher == l.Classroomteatcher);
+            ClassLibrary.Group group = DB.groups.FirstOrDefault(l => name == l.Name);
             if (group == null)
             {
+                Console.WriteLine("Введите сокращение группы");
+                string shortname = Console.ReadLine();
+
+                Console.WriteLine("Введите численность группы: ");
+                int quantity = 0;
+
+                while(!int.TryParse(Console.ReadLine(), out quantity) && quantity < 0)
+                {
+                    Console.WriteLine("Численность группы не может быть меньше нуля");
+                    Console.WriteLine("Введите численность группы: ");
+                }
+
+                Console.WriteLine("Введите год поступления: ");
+                int year = 0;
+
+                while(!int.TryParse(Console.ReadLine(), out  year) && year < 0)
+                {
+                    Console.WriteLine("Неверный год. Повторите ввод:");
+                }
+
+                Speciality speciality = CreateSpeciality();
+
+                Employee classroomteatcher = CreateEmployee();
                 group = new ClassLibrary.Group(name, shortname, quantity, year, speciality, classroomteatcher);
                 DB.groups.Add(group);
                 Console.WriteLine("Группа успешно создана.");
@@ -271,7 +261,7 @@ namespace ConsoleApp
             decimal salary = Convert.ToInt32(Console.ReadLine());
 
             Subdivision subdivision = CreateSubdivision();
-            JobTitle jobTitle = DB.positions.FirstOrDefault(l => subdivision == l.Subdivision);
+            JobTitle jobTitle = DB.positions.FirstOrDefault(l => subdivision == l.Subdivision && name == l.Name);
             if (jobTitle == null)
             {
                 jobTitle = new JobTitle(name, salary, subdivision);
@@ -284,14 +274,15 @@ namespace ConsoleApp
 
         static public Subdivision CreateSubdivision()
         {
-            Employee employee = CreateEmployee();
-            Organization organization = CreateOrganization();
             Console.WriteLine("Введите имя подразделения");
             string name = Console.ReadLine();
             Subdivision subdivision = DB.subdivisions.FirstOrDefault(el => el.Name == name);
 
             if (subdivision == null)
             {
+
+                Employee employee = CreateEmployee();
+                Organization organization = CreateOrganization();
                 subdivision = new Subdivision(name, employee, organization);
                 DB.subdivisions.Add(subdivision);
                 Console.WriteLine("подразделение успешно создано.");
@@ -304,7 +295,7 @@ namespace ConsoleApp
             return null;
         }
 
-        static public Body CreateBody()
+        static public BuildingBody CreateBody()
         {
             Console.WriteLine("Введите название корпуса:");
             string name = Console.ReadLine();
@@ -316,12 +307,12 @@ namespace ConsoleApp
 
             Organization organization = CreateOrganization();
 
-            Body body = DB.bodies.FirstOrDefault(l => employee == l.Employe && organization == l.Organization);
+            BuildingBody body = DB.buildingbodies.FirstOrDefault(l => name == l.Name && organization == l.Organization);
 
             if (body == null)
             {
-                body = new Body(name, address, employee, organization);
-                DB.bodies.Add(body);
+                body = new BuildingBody(name, address, employee, organization);
+                DB.buildingbodies.Add(body);
                 Console.WriteLine("Корпус успешно создан.");
             }
 
