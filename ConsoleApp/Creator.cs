@@ -198,7 +198,7 @@ namespace ConsoleApp
             Console.WriteLine("Введите сокращенное название специальности:");
             string abbreviation = Console.ReadLine();
 
-            Speciality speciality = DB.specialties.FirstOrDefault();
+            Speciality speciality = DB.specialties.FirstOrDefault(l => abbreviation == l.Abbreviation);
             if (speciality == null)
             {
                 speciality = new Speciality(name, abbreviation);
