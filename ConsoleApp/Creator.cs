@@ -203,11 +203,41 @@ namespace ConsoleApp
             return speciality;
         }
 
-        public static Pair CreatePair() // тимлид делать за людей не будет
+        public static Pair CreatePair()
         {
-            return null;
+            Console.WriteLine("Введите время начала пары: ");
+            try
+            {
+                TimeSpan startPair = TimeSpan.Parse(Console.ReadLine());
+                Console.WriteLine("Введите время окончания пары: ");
+                TimeSpan endPair = TimeSpan.Parse(Console.ReadLine());
+                Console.WriteLine("Введите время начала перерыва: ");
+                TimeSpan startBreak = TimeSpan.Parse(Console.ReadLine());
+                Console.WriteLine("Введите время окончания перерыва: ");
+                TimeSpan endBreak = TimeSpan.Parse(Console.ReadLine());
+
+                Shift shift = CreateShift();
+                Pair pair = DB.pairs.FirstOrDefault();
+
+                if (pair == null)
+                {
+                    pair = new Pair(startPair, endPair, startBreak, endBreak, shift);
+                    DB.pairs.Add(pair);
+                    Console.WriteLine("Пара создана.");
+                }
+
+                return pair;
+            }
+            catch
+            {
+                Console.WriteLine("Неверный формат ввода");
+                return null;
+            }
+            
+
+            
         }
-        
+
         static public Shift CreateShift()
         {
             Console.WriteLine("Введите название смены:");
