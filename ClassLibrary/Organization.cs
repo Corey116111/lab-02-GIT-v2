@@ -16,19 +16,19 @@ namespace ClassLibrary
         private readonly string name;
         private readonly string legalAdress;
         private readonly string actualAdress;
-        private readonly Employee employee;
-        public Organization(string name, string legalAdress, string actualAdress, Employee employee)
+        private readonly Employee director;
+        public Organization(string name, string legalAdress, string actualAdress, Employee director)
         {
             this.name = name;
             this.legalAdress = legalAdress;
             this.actualAdress = actualAdress;
-            this.employee = employee;
+            this.director = director;
         }
 
         public string Name { get { return name; } }
         public string LegalAdress { get { return legalAdress; } }
         public string ActualAdress { get { return actualAdress; } }
-        public Employee Employee { get { return employee; } }
+        public Employee Employee { get { return director; } }
 
     }
 }
