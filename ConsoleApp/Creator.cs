@@ -192,13 +192,13 @@ namespace ConsoleApp
 
         public static Speciality CreateSpeciality()
         {
-            Console.WriteLine("Введите название специальности:");
+            Console.WriteLine("Введите название специальности: ");
             string name = Console.ReadLine();
 
             Console.WriteLine("Введите сокращенное название специальности:");
             string abbreviation = Console.ReadLine();
 
-            Speciality speciality = DB.specialties.FirstOrDefault();
+            Speciality speciality = DB.specialties.FirstOrDefault(l => abbreviation == l.Abbreviation);
             if (speciality == null)
             {
                 speciality = new Speciality(name, abbreviation);
@@ -217,14 +217,13 @@ namespace ConsoleApp
         {
             Console.WriteLine("Введите название смены:");
             string name = Console.ReadLine();
-            Shift shift = DB.shifts.FirstOrDefault();
+            Shift shift = DB.shifts.FirstOrDefault(l => name == l.Name);
             if (shift == null)
             {
                 shift = new Shift(name);
                 DB.shifts.Add(shift);
                 Console.WriteLine("Смена успешно создана.");
             }
-
             return shift;
         }
 
