@@ -271,7 +271,7 @@ namespace ConsoleApp
             decimal salary = Convert.ToInt32(Console.ReadLine());
 
             Subdivision subdivision = CreateSubdivision();
-            JobTitle jobTitle = DB.positions.FirstOrDefault(l => subdivision == l.Subdivision);
+            JobTitle jobTitle = DB.positions.FirstOrDefault(l => subdivision == l.Subdivision && name == l.Name);
             if (jobTitle == null)
             {
                 jobTitle = new JobTitle(name, salary, subdivision);
