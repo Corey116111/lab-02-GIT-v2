@@ -11,7 +11,7 @@ namespace ConsoleApp
 {
     internal static class Creator
     {
-        
+
         public static Lesson CreateLesson()
         {
             Discipline discipline = CreateDiscipline();
@@ -59,7 +59,7 @@ namespace ConsoleApp
 
             return lesson;
         }
-      
+
         public static Classroom CreateClassroom()
         {
             Console.WriteLine("Введите название аудитории:");
@@ -94,7 +94,7 @@ namespace ConsoleApp
                 f3 = int.TryParse(Console.ReadLine(), out countEquipment);
             }
             Equipment[] equipment = new Equipment[countEquipment];
-            for(int i = 0; i < countEquipment; i++)
+            for (int i = 0; i < countEquipment; i++)
             {
                 equipment[i] = CreateEquipment();
             }
@@ -110,7 +110,7 @@ namespace ConsoleApp
 
             return classroom;
         }
-        
+
         public static Discipline CreateDiscipline() // тимлид делать за людей не будет
         {
             return null;
@@ -127,7 +127,7 @@ namespace ConsoleApp
             Console.WriteLine("Введите численность группы");
             int quantity = int.Parse(Console.ReadLine());
 
-            if(quantity <= 0) 
+            if (quantity <= 0)
             {
                 Console.WriteLine("Численность группы не может быть меньше нуля");
                 quantity = int.Parse(Console.ReadLine());
@@ -136,7 +136,7 @@ namespace ConsoleApp
             Console.WriteLine("Введите год поступления");
             int year = int.Parse(Console.ReadLine());
 
-            if(year <= 0)
+            if (year <= 0)
             {
                 Console.WriteLine("Неверный год. Повторите ввод:");
                 year = int.Parse(Console.ReadLine());
@@ -157,7 +157,7 @@ namespace ConsoleApp
             return group;
         }
 
-        public static Student CreateStudent() 
+        public static Student CreateStudent()
         {
             Console.WriteLine("Введите фамилию студента:");
             string surname = Console.ReadLine();
@@ -205,42 +205,84 @@ namespace ConsoleApp
 
         public static Pair CreatePair()
         {
-            try
+            TimeSpan startPair;
+            TimeSpan endPair;
+            TimeSpan startBreak;
+            TimeSpan endBreak;
+
+            while (true)
             {
-                Console.WriteLine("Введите время начала пары: ");
-                TimeSpan startPair = TimeSpan.Parse(Console.ReadLine());
-                Console.WriteLine("Введите время окончания пары: ");
-                TimeSpan endPair = TimeSpan.Parse(Console.ReadLine());
-                Console.WriteLine("Введите время начала перерыва: ");
-                TimeSpan startBreak = TimeSpan.Parse(Console.ReadLine());
-                Console.WriteLine("Введите время окончания перерыва: ");
-                TimeSpan endBreak = TimeSpan.Parse(Console.ReadLine());
 
-                Shift shift = CreateShift();
-                Pair pair = DB.pairs.FirstOrDefault();
-
-                if (pair.Time_pair_start == startPair)
+                try
                 {
-                    Console.WriteLine("В это время уже есть пара.");
+                    Console.WriteLine("Введите время начала пары: ");
+                    startPair = TimeSpan.Parse(Console.ReadLine());
+                    break;
+                }
+                catch
+                {
+                    Console.WriteLine("Неверный ввод");
                 }
 
-                if (pair == null)
-                {
-                    pair = new Pair(startPair, endPair, startBreak, endBreak, shift);
-                    DB.pairs.Add(pair);
-                    Console.WriteLine("Пара создана.");
-                }
-
-                return pair;
             }
-            catch
+            while (true)
             {
-                Console.WriteLine("Неверный формат ввода");
-                return null;
+                try
+                {
+                    Console.WriteLine("Введите время окончания пары: ");
+                    endPair = TimeSpan.Parse(Console.ReadLine());
+                    break;
+                }
+                catch
+                {
+                    Console.WriteLine("Неверный ввод");
+                }
             }
-            
+            while (true)
+            {
+                try
+                {
+                    Console.WriteLine("Введите время начала перерыва: ");
+                    startBreak = TimeSpan.Parse(Console.ReadLine());
+                    break;
+                }
+                catch
+                {
+                    Console.WriteLine("Неверный ввод");
+                }
+            }
+            while (true)
+            {
+                try
+                {
+                    Console.WriteLine("Введите время окончания перерыва: ");
+                    endBreak = TimeSpan.Parse(Console.ReadLine());
+                    break;
+                }
+                catch
+                {
+                    Console.WriteLine("Неверный ввод");
+                }
+            }
 
-            
+
+            Shift shift = CreateShift();
+            Pair pair = DB.pairs.FirstOrDefault();
+
+            if (pair.Time_pair_start == startPair)
+            {
+                Console.WriteLine("В это время уже есть пара.");
+            }
+
+            if (pair == null)
+            {
+                pair = new Pair(startPair, endPair, startBreak, endBreak, shift);
+                DB.pairs.Add(pair);
+                Console.WriteLine("Пара создана.");
+            }
+
+            return pair;
+
         }
 
         static public Shift CreateShift()
@@ -263,7 +305,7 @@ namespace ConsoleApp
             return null;
         }
 
-        static public JobTitle CreateJobTitle() 
+        static public JobTitle CreateJobTitle()
         {
             Console.WriteLine("Введите название должности:");
             string name = Console.ReadLine();
@@ -301,7 +343,7 @@ namespace ConsoleApp
         }
 
         static public Organization CreateOrganization() // тимлид делать за людей не будет
-        { 
+        {
             return null;
         }
 
@@ -351,10 +393,10 @@ namespace ConsoleApp
         }
 
         private static bool ValidateTimeFormat(string time)
-         {
+        {
             string pattern = @"^(2[0-3]|[01][0-9]):[0-5][0-9]$";
             return Regex.IsMatch(time, pattern);
-         }
+        }
 
     }
 }
