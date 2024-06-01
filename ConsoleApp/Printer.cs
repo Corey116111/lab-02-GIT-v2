@@ -126,7 +126,7 @@ namespace ConsoleApp
             }
         }
 
-        public static void PrintBody(BuildingBody body)
+        public static void PrintBody(Body body)
         {
             Console.WriteLine("Корпус:");
             Console.WriteLine($"Название: {body.Name}");
@@ -146,7 +146,7 @@ namespace ConsoleApp
             switch (choice)
             {
                 case 1:
-                    foreach (var body in DB.buildingbodies)
+                    foreach (var body in DB.bodies)
                     {
                         PrintBody(body);
                         Console.WriteLine();
