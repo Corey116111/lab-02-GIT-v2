@@ -212,85 +212,47 @@ namespace ConsoleApp
         }
 
         public static Pair CreatePair()
-        {
-            Pair pair = DB.pairs.FirstOrDefault();
-            Shift shift = CreateShift();
+        { 
             TimeSpan startPair;
-            TimeSpan endPair;
-            TimeSpan startBreak;
-            TimeSpan endBreak;
-
-            while (true)
+            
+            Console.WriteLine("Введите время начала пары: ");
+            while (!TimeSpan.TryParse(Console.ReadLine(), out startPair))
             {
-
-                try
-                {
-                    Console.WriteLine("Введите время начала пары: ");
-                    startPair = TimeSpan.Parse(Console.ReadLine());
-                    for (int i = 0; i < DB.pairs.Count; i++)
-                    {
-                        if (DB.pairs[i].Time_pair_start == startPair)
-                        {
-                            Console.WriteLine("В это время уже есть пара.");
-                        }
-                    }
-                    break;
-                }
-                catch
-                {
-                    Console.WriteLine("Неверный ввод");
-                }
-
-            }
-            while (true)
-            {
-                try
-                {
-                    Console.WriteLine("Введите время окончания пары: ");
-                    endPair = TimeSpan.Parse(Console.ReadLine());
-                    break;
-                }
-                catch
-                {
-                    Console.WriteLine("Неверный ввод");
-                }
-            }
-            while (true)
-            {
-                try
-                {
-                    Console.WriteLine("Введите время начала перерыва: ");
-                    startBreak = TimeSpan.Parse(Console.ReadLine());
-                    break;
-                }
-                catch
-                {
-                    Console.WriteLine("Неверный ввод");
-                }
-            }
-            while (true)
-            {
-                try
-                {
-                    Console.WriteLine("Введите время окончания перерыва: ");
-                    endBreak = TimeSpan.Parse(Console.ReadLine());
-                    break;
-                }
-                catch
-                {
-                    Console.WriteLine("Неверный ввод");
-                }
+                Console.WriteLine("Введите время начала пары: ");
             }
 
-
+            Pair pair = DB.pairs.FirstOrDefault(l => startPair == l.Time_pair_start);
 
             if (pair == null)
             {
+                TimeSpan endPair;
+                TimeSpan startBreak;
+                TimeSpan endBreak;
+
+                Console.WriteLine("Введите время окончания пары: ");
+                while (!TimeSpan.TryParse(Console.ReadLine(), out endPair))
+                {
+                    Console.WriteLine("Введите время окончания пары: ");
+                }
+
+                Console.WriteLine("Введите время начала перерыва: ");
+                while (!TimeSpan.TryParse(Console.ReadLine(), out startBreak))
+                {
+                    Console.WriteLine("Введите время начала перерыва: ");
+                }
+                Console.WriteLine("Введите время окончания перерыва: ");
+                while (!TimeSpan.TryParse(Console.ReadLine(), out endBreak))
+                {
+                    Console.WriteLine("Введите время окончания перерыва: ");
+                }
+
+                Shift shift = CreateShift();
                 pair = new Pair(startPair, endPair, startBreak, endBreak, shift);
                 DB.pairs.Add(pair);
+
                 Console.WriteLine("Пара создана.");
             }
-
+            
             return pair;
 
         }
