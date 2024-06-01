@@ -119,7 +119,7 @@ namespace ConsoleApp
             }
         }
 
-        public static void PrintBody(Body body)
+        public static void PrintBody(BuildingBody body)
         {
             Console.WriteLine("Корпус:");
             Console.WriteLine($"Название: {body.Name}");
