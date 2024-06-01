@@ -120,10 +120,7 @@ namespace ConsoleApp
             Console.WriteLine($"Название: {organization.Name}");
             Console.WriteLine($"Юридический адрес: {organization.LegalAdress}");
             Console.WriteLine($"Фактический адрес: {organization.ActualAdress}");
-            if (organization != null && organization.Employee != null)
-            {
-                Console.WriteLine($"Руководитель:  {organization.Employee.Surname} {organization.Employee.Name} {organization.Employee.Patronymic}");
-            }
+            PrintEmployee(organization.Employee);
         }
 
         public static void PrintBody(BuildingBody body)
@@ -146,7 +143,7 @@ namespace ConsoleApp
             switch (choice)
             {
                 case 1:
-                    foreach (var body in DB.buildingbodies)
+                    foreach (var body in DB.bodies)
                     {
                         PrintBody(body);
                         Console.WriteLine();

@@ -21,7 +21,7 @@ namespace ConsoleApp
         public static readonly List<JobTitle> positions = new List<JobTitle>();
         public static readonly List<Subdivision> subdivisions = new List<Subdivision>();
         public static readonly List<Organization> organizations = new List<Organization>();
-        public static readonly List<BuildingBody> buildingbodies = new List<BuildingBody>();
+        public static readonly List<BuildingBody> bodies = new List<BuildingBody>();
         public static readonly List<TypeOfActivity> TypesOfActivity = new List<TypeOfActivity>();
     }
 }

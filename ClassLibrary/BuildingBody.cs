@@ -15,11 +15,11 @@ namespace ClassLibrary
         private readonly Employee commandant;
         private readonly Organization organization;
 
-        public BuildingBody(string name, string address, Employee commandant, Organization organization)
+        public BuildingBody(string name, string address, Employee employee, Organization organization)
         {
             this.name = name;
             this.address = address;
-            this.commandant = commandant; 
+            this.commandant = employee; 
             this.organization = organization; 
         }
 

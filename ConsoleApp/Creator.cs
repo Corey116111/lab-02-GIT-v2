@@ -108,7 +108,7 @@ namespace ConsoleApp
         public static Discipline CreateDiscipline()
 
         {
-            Console.WriteLine("Введите название дисциплины:"); 
+            Console.WriteLine("Введите название дисциплины:");
             string disciplineName = Console.ReadLine();
 
             Console.WriteLine("Введите короткое название дисциплины:");
@@ -140,7 +140,7 @@ namespace ConsoleApp
                 Console.WriteLine("Введите численность группы: ");
                 int quantity = 0;
 
-                while(!int.TryParse(Console.ReadLine(), out quantity) && quantity < 0)
+                while (!int.TryParse(Console.ReadLine(), out quantity) && quantity < 0)
                 {
                     Console.WriteLine("Численность группы не может быть меньше нуля");
                     Console.WriteLine("Введите численность группы: ");
@@ -149,7 +149,7 @@ namespace ConsoleApp
                 Console.WriteLine("Введите год поступления: ");
                 int year = 0;
 
-                while(!int.TryParse(Console.ReadLine(), out  year) && year < 0)
+                while (!int.TryParse(Console.ReadLine(), out year) && year < 0)
                 {
                     Console.WriteLine("Неверный год. Повторите ввод:");
                 }
@@ -176,8 +176,6 @@ namespace ConsoleApp
             Console.WriteLine("Введите отчество студента:");
             string patronymic = Console.ReadLine();
 
-            Console.WriteLine("Введите день рождения студента:");
-            string birth = Console.ReadLine();
 
             ClassLibrary.Group group = CreateGroup();
             string FullName = $"{surname} {name} {patronymic}";
@@ -185,6 +183,9 @@ namespace ConsoleApp
 
             if (student == null)
             {
+
+                Console.WriteLine("Введите день рождения студента:");
+                string birth = Console.ReadLine();
                 student = new Student(surname, name, patronymic, group, DateTime.Parse(birth));
                 DB.students.Add(student);
                 Console.WriteLine("Студент успешно создан");
@@ -335,9 +336,28 @@ namespace ConsoleApp
             return subdivision;
         }
 
-        static public Organization CreateOrganization() // тимлид делать за людей не будет
+        static public Organization CreateOrganization() 
         {
-            return null;
+            Console.WriteLine("Введите название организации:");
+            string name = Console.ReadLine();
+
+            Console.WriteLine("Введите юридический адрес организации:");
+            string legalAdress = Console.ReadLine();
+
+            Console.WriteLine("Введите фактический адрес организации:");
+            string actualAdress = Console.ReadLine();
+
+            Console.WriteLine("Введите данные руководителя:");
+            Employee director = CreateEmployee();
+            Organization organization = DB.organizations.FirstOrDefault(l => director == l.Employee);
+            if (organization == null)
+            {
+                organization = new Organization(name, legalAdress, actualAdress, director);
+                DB.organizations.Add(organization);
+                Console.WriteLine("Организация успешно создана.");
+            }
+            return organization;
+
         }
 
         static public BuildingBody CreateBody()
@@ -352,12 +372,12 @@ namespace ConsoleApp
 
             Organization organization = CreateOrganization();
 
-            BuildingBody body = DB.buildingbodies.FirstOrDefault(l => name == l.Name && organization == l.Organization);
+            BuildingBody body = DB.bodies.FirstOrDefault(l => name == l.Name && organization == l.Organization);
 
             if (body == null)
             {
                 body = new BuildingBody(name, address, employee, organization);
-                DB.buildingbodies.Add(body);
+                DB.bodies.Add(body);
                 Console.WriteLine("Корпус успешно создан.");
             }
 
