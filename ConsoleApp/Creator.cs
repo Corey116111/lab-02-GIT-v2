@@ -141,22 +141,21 @@ namespace ConsoleApp
                 Console.WriteLine("Введите сокращение группы");
                 string shortname = Console.ReadLine();
 
-                Console.WriteLine("Введите численность группы");
-                int quantity = int.Parse(Console.ReadLine());
+                Console.WriteLine("Введите численность группы: ");
+                int quantity = 0;
 
-                if (quantity <= 0)
+                while(!int.TryParse(Console.ReadLine(), out quantity) && quantity < 0)
                 {
                     Console.WriteLine("Численность группы не может быть меньше нуля");
-                    quantity = int.Parse(Console.ReadLine());
+                    Console.WriteLine("Введите численность группы: ");
                 }
 
-                Console.WriteLine("Введите год поступления");
-                int year = int.Parse(Console.ReadLine());
+                Console.WriteLine("Введите год поступления: ");
+                int year = 0;
 
-                if (year <= 0)
+                while(!int.TryParse(Console.ReadLine(), out  year) && year < 0)
                 {
                     Console.WriteLine("Неверный год. Повторите ввод:");
-                    year = int.Parse(Console.ReadLine());
                 }
 
                 Speciality speciality = CreateSpeciality();
