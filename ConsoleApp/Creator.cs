@@ -172,8 +172,6 @@ namespace ConsoleApp
             Console.WriteLine("Введите отчество студента:");
             string patronymic = Console.ReadLine();
 
-            Console.WriteLine("Введите день рождения студента:");
-            string birth = Console.ReadLine();
 
             ClassLibrary.Group group = CreateGroup();
             string FullName = $"{surname} {name} {patronymic}";
@@ -181,6 +179,9 @@ namespace ConsoleApp
 
             if (student == null)
             {
+
+                Console.WriteLine("Введите день рождения студента:");
+                string birth = Console.ReadLine();
                 student = new Student(surname, name, patronymic, group, DateTime.Parse(birth));
                 DB.students.Add(student);
                 Console.WriteLine("Студент успешно создан");
