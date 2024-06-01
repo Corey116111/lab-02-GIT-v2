@@ -224,7 +224,6 @@ namespace ConsoleApp
                 DB.shifts.Add(shift);
                 Console.WriteLine("Смена успешно создана.");
             }
-
             return shift;
         }
 
