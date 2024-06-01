@@ -250,14 +250,15 @@ namespace ConsoleApp
 
         static public Subdivision CreateSubdivision()
         {
-            Employee employee = CreateEmployee();
-            Organization organization = CreateOrganization();
             Console.WriteLine("Введите имя подразделения");
             string name = Console.ReadLine();
             Subdivision subdivision = DB.subdivisions.FirstOrDefault(el => el.Name == name);
 
             if (subdivision == null)
             {
+
+                Employee employee = CreateEmployee();
+                Organization organization = CreateOrganization();
                 subdivision = new Subdivision(name, employee, organization);
                 DB.subdivisions.Add(subdivision);
                 Console.WriteLine("подразделение успешно создано.");
