@@ -73,14 +73,14 @@ namespace ConsoleApp
             Console.WriteLine($"Аббревиатура: {speciality.Abbreviation}");
         }
 
-        public static void PrintPair(Pair pair)  // тимлид делать за людей не будет
+        public static void PrintPair(Pair pair)
         {
             Console.WriteLine("Пара:");
             Console.WriteLine($"Начало: {pair.Time_pair_start}");
             Console.WriteLine($"Конец: {pair.Time_pair_end}");
             Console.WriteLine($"Начало перерыва: {pair.Time_break_start}");
             Console.WriteLine($"Конец перерыва: {pair.Time_break_end}");
-            Console.WriteLine($"Смена: {pair.Shift}");
+            PrintShift(pair.Shift);
         }
 
         public static void PrintShift(Shift shift) 
