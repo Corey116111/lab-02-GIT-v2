@@ -86,6 +86,7 @@ namespace ConsoleApp
                 }
 
                 Console.WriteLine("Введите количество оборудования:");
+
                 while (!int.TryParse(Console.ReadLine(), out countEquipment) && countEquipment < 0)
                 {
                     Console.WriteLine("Некорректный ввод");
@@ -96,6 +97,7 @@ namespace ConsoleApp
                 {
                     equipment[i] = CreateEquipment();
                 }
+              
                 classroom = new Classroom(name, employee, countPlaces, countWindows, equipment);
                 DB.classrooms.Add(classroom);
                 Console.WriteLine("Аудитория успешно создана.");
@@ -104,6 +106,7 @@ namespace ConsoleApp
         }
 
         public static Discipline CreateDiscipline()
+
         {
             Console.WriteLine("Введите название дисциплины:");
             string disciplineName = Console.ReadLine();
@@ -129,6 +132,7 @@ namespace ConsoleApp
 
             ClassLibrary.Group group = DB.groups.FirstOrDefault(l => name == l.Name);
             if (group == null)
+
             {
                 Console.WriteLine("Введите сокращение группы");
                 string shortname = Console.ReadLine();
@@ -208,9 +212,50 @@ namespace ConsoleApp
             return speciality;
         }
 
-        public static Pair CreatePair() // тимлид делать за людей не будет
-        {
-            return null;
+        public static Pair CreatePair()
+        { 
+            TimeSpan startPair;
+            
+            Console.WriteLine("Введите время начала пары: ");
+            while (!TimeSpan.TryParse(Console.ReadLine(), out startPair))
+            {
+                Console.WriteLine("Введите время начала пары: ");
+            }
+
+            Pair pair = DB.pairs.FirstOrDefault(l => startPair == l.StartPair);
+
+            if (pair == null)
+            {
+                TimeSpan endPair;
+                TimeSpan startBreak;
+                TimeSpan endBreak;
+
+                Console.WriteLine("Введите время окончания пары: ");
+                while (!TimeSpan.TryParse(Console.ReadLine(), out endPair))
+                {
+                    Console.WriteLine("Введите время окончания пары: ");
+                }
+
+                Console.WriteLine("Введите время начала перерыва: ");
+                while (!TimeSpan.TryParse(Console.ReadLine(), out startBreak))
+                {
+                    Console.WriteLine("Введите время начала перерыва: ");
+                }
+                Console.WriteLine("Введите время окончания перерыва: ");
+                while (!TimeSpan.TryParse(Console.ReadLine(), out endBreak))
+                {
+                    Console.WriteLine("Введите время окончания перерыва: ");
+                }
+
+                Shift shift = CreateShift();
+                pair = new Pair(startPair, endPair, startBreak, endBreak, shift);
+                DB.pairs.Add(pair);
+
+                Console.WriteLine("Пара создана.");
+            }
+            
+            return pair;
+
         }
 
         static public Shift CreateShift()
@@ -311,6 +356,7 @@ namespace ConsoleApp
                 Console.WriteLine("Организация успешно создана.");
             }
             return organization;
+
         }
 
         static public BuildingBody CreateBody()

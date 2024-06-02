@@ -11,43 +11,43 @@ namespace ClassLibrary
     /// https://docs.google.com/document/d/1r4OjKXg5_5yj6ibHB778UEF5Z1nbUqGdXjpQXbTGWiQ/edit 7 вариант
     /// </summary>
 
-    public class Pair 
+    public class Pair
     {
-        private readonly TimeSpan time_pair_start;
-        private readonly TimeSpan time_pair_end;
-        private readonly TimeSpan time_break_start;
-        private readonly TimeSpan time_break_end;
+        private readonly TimeSpan startPair;
+        private readonly TimeSpan endPair;
+        private readonly TimeSpan startBreak;
+        private readonly TimeSpan endBreak;
 
         private readonly Shift shift;
 
-        public Pair(TimeSpan time_pair_start, TimeSpan time_pair_end, TimeSpan time_break_start, TimeSpan time_break_end, Shift shift)
+        public Pair(TimeSpan startPair, TimeSpan endPair, TimeSpan startBreak, TimeSpan endBreak, Shift shift)
         {
-            this.time_pair_start = time_pair_start;
-            this.time_pair_end = time_pair_end;
-            this.time_break_start = time_break_start;
-            this.time_break_end = time_break_end;
+            this.startPair = startPair;
+            this.endPair = endPair;
+            this.startBreak = startBreak;
+            this.endBreak = endBreak;
             this.shift = shift;
         }
 
-        public TimeSpan Time_pair_start
+        public TimeSpan StartPair
 
         {
-            get { return time_pair_start; }
+            get { return startPair; }
         }
 
-        public TimeSpan Time_pair_end
+        public TimeSpan EndPair
         {
-            get { return time_pair_end; }
+            get { return endPair; }
         }
 
-        public TimeSpan Time_break_start
+        public TimeSpan StartBreak
         {
-            get { return time_break_start; }
+            get { return startBreak; }
         }
-      
-        public TimeSpan Time_break_end
+
+        public TimeSpan EndBreak
         {
-            get { return time_break_end; }
+            get { return endBreak; }
         }
 
         public Shift Shift { get { return shift; } }
